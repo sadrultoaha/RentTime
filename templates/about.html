@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+ {% load static %}
+ {% block title %}
+ About
+ {% endblock %}
+
+ {% block content %}
+    <main>
+        <div id="about">
+            <div class="container">
+                <div class="about-text">
+                    <h2>About Us</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore molestias repudiandae nam dignissimos. Cumque quis maiores corporis dolore, tempore quo at officiis deserunt vitae corrupti veniam enim aut molestiae suscipit blanditiis excepturi cupiditate explicabo nisi minima sed nam. Nihil, exercitationem. Quisquam.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptatum neque aliquam quibusdam ut, perferendis provident possimus enim non quaerat iusto expedita eos omnis accusantium ullam reprehenderit tempora, ratione cumque! Consequatur dolore rem cupiditate accusantium ab magnam architecto dolorum saepe, dolorem velit aut nobis tempora rerum ullam. Cupiditate, sapiente saepe.</p>
+                </div>
+                <img src="{% static 'images/ills-about.svg' %}" alt="Picture of house">
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
