@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>rent-time - aboutpage</title>
+        
+        <!-- Googler Font Link  -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    
+        <!-- Font Awesome CDN Link -->
+        <script src="https://kit.fontawesome.com/ddb312c79b.js" crossorigin="anonymous"></script>
+    
+        <!-- CSS Stylesheet Link -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <a href="index.html"><h3>RentTime</h3></a>
+                <!-- <img src="#" alt="Logo of Rent Time"> -->
+
+                <div id="search-bar-for-responsive">
+                    <input type="text" name="" id="responive-searchbar" placeholder="Search share accommod..."> <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+    
+                <div class="profile-icon" onclick="settingsMenuToggle()">
+                    <img src="images/man1.jpg" alt="Avater">
+                </div>
+                
+                <!-- Setting Menu -->
+                <div class="setting-menu">
+
+                    <div class="setting-menu-inner">
+                        <div class="menu-items">
+                            <div class="each-item profile-shortcut">
+                                <img src="images/man1.jpg" alt="avater">
+                                <p>Profile</p>
+                            </div>
+                            <div class="each-item">
+                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                <p>My Bookings</p>
+                            </div>
+                            <div class="each-item">
+                                <i class="fa fa-list-ul" aria-hidden="true"></i>
+                                <p>My Listing</p>
+                            </div>
+                            <div class="each-item">
+                                <i class="fa fa-sliders" aria-hidden="true"></i>
+                                <p><a href="settings.html">Settings</a></p>
+                            </div>
+                            <div class="each-item">
+                                <i class="fa fa-camera-retro" aria-hidden="true"></i>
+                                <p><a href="blog-page.html">Blogs</a></p>
+                            </div>
+                            <div class="each-item">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                <p><a href="about.html">About Us</a></p>
+                            </div>
+                        </div>
+
+                        <div class="log-out">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            <p>Sign out</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Responsive Nav Bar -->
+                <div class="responsive-navbar">
+                    <button id="nav-bar-open"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                    <button id="nav-bar-close"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <!-- End Of Header  -->
+    <main>
+        <div id="post-requirements">
+            <div class="container">
+                <div class="left-side-collect-peremeter">
+                    <h2>Rooms for Rent in Chankharpul</h2>
+
+                    <div class="city-select-and-search">
+                        <select>
+                            <option value="">Chankharpul</option>
+                            <option value="">Rayer Bazaar</option>
+                            <option value="">Andarkilla Bandarban</option>
+                            <option value="">Baghmara</option>
+                            <option value="">Arailla Bazaar</option>
+                        </select>
+
+                        <div class="input-field">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i> <input placeholder="Enter a street, area or city.." type="text" required>
+                        </div>
+                        <!-- Each Input Field -->
+                    </div>
+
+                    <div class="budget-and-filter">
+                        <button class="peremeter-btn"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Neighborhood</a></button>
+
+                        <button class="peremeter-btn"><a href="#"><i class="fa fa-calendar-o" aria-hidden="true"></i> Move Date</a></button>
+
+                        <button class="peremeter-btn"><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> Any</a></button>
+
+                        <button class="peremeter-btn"><a href="#"><i class="fa fa-money" aria-hidden="true"></i> Budget</a></button>
+
+                        <button class="peremeter-btn"><a href="#"><i class="fa fa-filter" aria-hidden="true"></i> More Filters</a></button>
+                    </div>
+
+                    <div class="peremeter-img">
+                        <img src="images/peremeter-page.svg" alt="Picture of rent">
+                    </div>
+                </div>
+
+                <div class="right-side-google-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d29215.25410027112!2d90.36756249999999!3d23.75070405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1662980320131!5m2!1sen!2sbd" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Here start footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="intro">
+                    <h4 class="footer-title"><a href="#" class="logo">Rent Time</a></h4>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                    <a href="#">Read more <span class="fa fa-chevron-right" style="font-size: 11px;"></span></a>
+                </div>
+
+                <div class="Services">
+                    <h4 class="footer-title">Services</h4>
+                    <ul>
+                        <li><a href="#">Map Direction</a></li>
+                        <li><a href="#">Accomodation Services</a></li>
+                        <li><a href="#">Great Experience</a></li>
+                        <li><a href="#">Perfect central location</a></li>
+                    </ul>
+                </div>
+
+                <div class="tag-cloud">
+                    <h4 class="footer-title">Tags</h4>
+                    <div class="short-link">
+                        <a href="#" class="tag-cloud-link">apartment</a>
+                        <a href="#" class="tag-cloud-link">home</a>
+                        <a href="#" class="tag-cloud-link">rental</a>
+                        <a href="#" class="tag-cloud-link">rent</a>
+                        <a href="#" class="tag-cloud-link">house</a>
+                        <a href="#" class="tag-cloud-link">place</a>
+                        <a href="#" class="tag-cloud-link">sleep</a>
+                    </div>
+                </div>
+
+                <div class="subscribe">
+                    <div class="subscribeWrapper">
+                        <h4 class="footer-title">Subcribe</h4>
+                        <form action="#" class="subscribe-form">
+                            <input type="email" class="form-control rounded-left" placeholder="Enter email address" required>
+                            <button type="submit"><i class="fa fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+
+                    <div id="social-links">
+                        <h4>Follow us</h4>
+                        <ul>
+                            <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                            <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                            <li><a href="#"><span class="fa fa-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>    
+        </div>
+
+        <div class="container hrtag">
+            <hr>
+        </div>
+
+        <div class="copyright-message-and-privacy">
+            <div class="container copyright-box">
+                <div class="copyright-message">
+                    <p>
+                        Copyright &copy; 2022 All rights reserved | Developed by Mariam Maherin Fariha
+                    </p>
+                </div>
+                <div class="terms-privacy">
+                    <p>
+                        <a href="privacy.html">Terms</a>
+                        <a href="privacy.html">Privacy</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main script file -->
+    <script src="main.js"></script>
+</body>
+</html>
