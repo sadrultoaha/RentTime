@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>rent-time - registration</title>
+        <title>rent-time - aboutpage</title>
         
         <!-- Googler Font Link  -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
@@ -15,6 +15,11 @@
         <!-- CSS Stylesheet Link -->
         <link rel="stylesheet" href="style.css">
     </head>
+    <style>
+        body{
+            background-color: #2f3a4a;
+        }
+    </style>
 <body>
     <header>
         <nav>
@@ -31,7 +36,6 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="blog-page.html">Blog</a></li>
                     <li><a href="login.html">Login</a></li>
-
                     <div class="dark-and-light-theme">
                         <a class="search-bar"><input type="text" ><i class="fa fa-search" aria-hidden="true"></i></a>
                         <button class="dark"><i class="fa fa-moon-o" aria-hidden="true"></i></button>
@@ -49,100 +53,75 @@
         </nav>
     </header>
     <!-- End Of Header  -->
-
-    <!-- Here strat main part -->
+    
     <main>
-        <div id="register-page">
-            <div class="container">            
-                <div class="form-box">
-                    <div class="button-box">
-                        <div id="btn"></div>
-                        <button type="button" onclick="student()" id="studentBtn" class="toggle-btn">Student</button>
-                        <button type="button" class="toggle-btn" id="ownerBtn" onclick="owner()">Owner</button>
-                    </div>
+        <div id="second-step-form">
+            <div class="container">
 
-                    <h4>Member Register</h4>
+                <div class="outer-form">
+                    <form action="#">
 
-                    <!-- For student -->
-                    <form id="student" class="input-group">
-                        <div class="name-field">
-                            <div>
-                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="First Name" type="text" required>
+                        <div class="page slide-page">
+                            <div class="input-field">
+                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="@username" type="text" >
+                            </div>
+                            <!-- Each Input Field -->
+
+                            <div class="input-field">
+                                <i class="fa fa-mobile" aria-hidden="true"></i> <input placeholder="Enter your phone number" type="text" >
+                            </div>
+                            <!-- Each Input Field -->
+
+                            <div class="input-field">
+                                <i class="fa fa-university" aria-hidden="true"></i> <input placeholder="write your University name" type="text" >
+                            </div>
+
+                            <!-- Each Input Field -->
+                            <div class="input-field">
+                                <i class="fa fa-university" aria-hidden="true"></i> <input placeholder="write your University ID" type="text" >
+                            </div>
+                            <!-- Each Input Field -->
+                            <div class="input-field">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <input placeholder="Date of birth.." type="datetime-local" >
+                            </div>
+                            <!-- Each Input Field -->
+
+                            <div class="btn-grp">
+                                <button class="prev-1 prev"><a href="register-page.html">Previous</a></button>
+                                <button class="next-1 next"><a href="#">Next</a></button>
+                            </div>
+                        </div>
+                        <!-- Each Page -->
+
+                        <div class="page">
+                            <div class="title">
+                                <p>Where are you searching?</p>
                             </div>
                             
-                            <div>
-                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="Last Name" type="text" required>
+                            <div class="input-field">
+                                <i class="fa fa-search-plus" aria-hidden="true"></i> <input placeholder="Search" type="text" >
                             </div>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-envelope-o" aria-hidden="true"></i> <input placeholder="Email" type="email" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Password" type="password" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Re-type Password" type="password" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="condition">
-                            <p><input type="checkbox" id="">I agree with <a href="privacy.html">term and condition</a>.</p>
-                        </div>
-                    
-                        <button id="register-btn"><a href="student-regi-multi-page.html">Next</a></button>
-                    
-                        <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
-                    </form>
+                            <!-- Each Input Field -->
 
-                    <!-- For student -->
-                    <form id="owner" class="input-group">
-                        <div class="name-field">
-                            <div>
-                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="First Name" type="text" required>
+                            <div class="input-field">
+                                <i class="fa fa-area-chart" aria-hidden="true"></i>
+                                 <input placeholder="Top region" type="text" >
                             </div>
-                            
-                            <div>
-                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="Last Name" type="text" required>
+                            <!-- Each Input Field -->
+
+                            <div class="btn-grp">
+                                <button class="prev-2 prev"><a href="#">Previous</a></button>
+                                <button class="submit next"><a href="dashboard-reg-or-login.html">REGISTER</a></button>
                             </div>
                         </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-envelope-o" aria-hidden="true"></i> <input placeholder="Email" type="email" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Password" type="password" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Re-type Password" type="password" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="condition">
-                            <p><input type="checkbox" id="">I agree with <a href="privacy.html">term and condition</a>.</p>
-                        </div>
-                    
-                        <button id="register-btn"><a href="owner-regi-multi-page.html">Next</a></button>
-                    
-                        <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
+                        <!-- Each Page -->
+
                     </form>
                 </div>
-
-                <img src="images/login.svg" alt="Picture of Login Picture">
             </div>
         </div>
     </main>
-    <!-- Here End main part -->
 
     <!-- Here start footer -->
     <footer id="footer">
@@ -150,7 +129,7 @@
             <div class="intro">
                     <h4 class="footer-title"><a href="#" class="logo">Rent Time</a></h4>
                     <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                    <a href="about.html">Read more <span class="fa fa-chevron-right" style="font-size: 11px;"></span></a>
+                    <a href="#">Read more <span class="fa fa-chevron-right" style="font-size: 11px;"></span></a>
                 </div>
 
                 <div class="Services">
@@ -180,7 +159,7 @@
                     <div class="subscribeWrapper">
                         <h4 class="footer-title">Subcribe</h4>
                         <form action="#" class="subscribe-form">
-                            <input type="email" class="form-control rounded-left" placeholder="Enter email address" required>
+                            <input type="email" class="form-control rounded-left" placeholder="Enter email address" >
                             <button type="submit"><i class="fa fa-paper-plane"></i></button>
                         </form>
                     </div>
