@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}RentTime - Home page{% endblock %}</title>
 
+
     <!-- Google Material CDN Link -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
@@ -20,9 +21,17 @@
     <script src="https://kit.fontawesome.com/ddb312c79b.js" crossorigin="anonymous"></script>
 
     <!-- CSS Stylesheet Link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
-</head>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+
+
 <body>
     {% block nav %}<!--  ##########################    Block For Home Page Navbar  ##################################   -->
     <header>

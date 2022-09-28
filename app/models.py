@@ -68,7 +68,8 @@ class Rent(models.Model):
     is_deleted = models.BooleanField(default=False)
     is_shared = models.BooleanField(default = False)
     created_date = models.DateTimeField(default=timezone.now)
-    
+    modified_date = models.DateTimeField(default=timezone.now)
+
     def __str__(self):
         return self.address
 

@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+ {% load static %}
+{% block title %}DashBoard{% endblock %}
+
+{% block content %}
+
+    <!-- Here strat main part -->
+    <main>
+        <div id="register-page">
+            <div class="container">            
+                <div class="form-box">
+                    <div class="button-box">
+                        <div id="btn"></div>
+                        <button type="button" onclick="student()" id="studentBtn" class="toggle-btn">Student</button>
+                        <button type="button" class="toggle-btn" id="ownerBtn" onclick="owner()">Owner</button>
+                    </div>
+
+                    <h4>Member Register</h4>
+
+                    <!-- For student -->
+                    <form id="student" class="input-group">
+                        <div class="name-field">
+                            <div>
+                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="First Name" type="text" required>
+                            </div>
+                            
+                            <div>
+                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="Last Name" type="text" required>
+                            </div>
+                        </div>
+                        <!-- Each Input Field -->
+                    
+                        <div class="input-field">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i> <input placeholder="Email" type="email" required>
+                        </div>
+                        <!-- Each Input Field -->
+                    
+                        <div class="input-field">
+                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Password" type="password" required>
+                        </div>
+                        <!-- Each Input Field -->
+                    
+                        <div class="input-field">
+                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Re-type Password" type="password" required>
+                        </div>
+                        <!-- Each Input Field -->
+                    
+                        <div class="condition">
+                            <p><input type="checkbox" id="">I agree with <a href="privacy.html">term and condition</a>.</p>
+                        </div>
+                    
+                        <button id="register-btn"><a href="student-regi-multi-page.html">Next</a></button>
+                    
+                        <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
+                    </form>
+
+                    <!-- For student -->
+                    <form id="owner" class="input-group">
+                        <div class="name-field">
+                            <div>
+                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="First Name" type="text" required>
+                            </div>
+                            
+                            <div>
+                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="Last Name" type="text" required>
+                            </div>
+                        </div>
+                        <!-- Each Input Field -->
+                    
+                        <div class="input-field">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i> <input placeholder="Email" type="email" required>
+                        </div>
+                        <!-- Each Input Field -->
+                    
+                        <div class="input-field">
+                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Password" type="password" required>
+                        </div>
+                        <!-- Each Input Field -->
+                    
+                        <div class="input-field">
+                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Re-type Password" type="password" required>
+                        </div>
+                        <!-- Each Input Field -->
+                    
+                        <div class="condition">
+                            <p><input type="checkbox" id="">I agree with <a href="privacy.html">term and condition</a>.</p>
+                        </div>
+                    
+                        <button id="register-btn"><a href="owner-regi-multi-page.html">Next</a></button>
+                    
+                        <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
+                    </form>
+                </div>
+
+                <img src="images/login.svg" alt="Picture of Login Picture">
+            </div>
+        </div>
+    </main>
+    <!-- Here End main part -->
+
+{% endblock %}

@@ -6,15 +6,12 @@ urlpatterns = [
 
     path('', rentapp.home, name='home'),
     path('about/', rentapp.about, name='about'),
+    path('rents/new/', rents.rent_new, name='rent_new'),
     path('rents/<option>/', rents.index, name='index'),
-    #path('rents/new/', rents.rent_new, name='rent_new'),
-
-    #path('rents/details/<pk>/', rents.details, name='details'),
-    #path('rents/details/<int:pk>/edit/', rents.rent_edit, name='rent_edit'),
-
+    path('rents/details/<pk>/', rents.details, name='details'),
+    path('rents/details/<int:pk>/edit/', rents.rent_edit, name='rent_edit'),
     #path('<user>/list/',renters.list, name='list'),
     #path('update/',renters.update),
-    
     #path('programmers/',renters.Programmers,name='Programmers'),
 
     #path('profile/<user>/',renters.ProgrammersProfile, name='ProgrammersProfile'),

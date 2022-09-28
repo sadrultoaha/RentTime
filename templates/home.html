@@ -2,8 +2,6 @@
  {% load static %}
 
  {% block content %}
-
-
     <main>
         <div id="home">
             <div class="container">
@@ -21,19 +19,19 @@
                     <div class="each-content-box">
                         <h5>I need a roommate</h5>
                         <p>Create a listing for a potential <br>roommate</p>
-                        <button><a href="/rents/{{True}}/">Find Roommate</button></a>
+                        <button><a href="/rents/{{'shared'}}/">Find Roommate</button></a>
                     </div>
                     
                     <div class="each-content-box">
                         <h5>I need a room</h5>
                         <p>Create a listing for a potential <br> roommate</p>
-                        <button><a href="/rents/{{False}}/">Find House</a></button>
+                        <button><a href="/rents/{{'all'}}/">Find House</a></button>
                     </div>
     
                     <div class="each-content-box">
                         <h5>Add my vacant place </h5>
                         <p>Create a listing for post ads</p>
-                        <button><a href="#">Post Ads</a></button>
+                        <button><a href="rents/new ">Add Place</a></button>
                     </div>
                 </div>
             </div>
@@ -46,7 +44,7 @@
                 <div class="seller">
                     <img src="{% static 'Images/pic2.jpg' %}" alt="Picture of sell Item">
 
-                    <h5>{{rent.address}}</h5>
+                    <a href="/rents/details/{{rent.id}}"><h5>{{rent.address}}</h5></a>
 
                     <div class="price-and-ageOfPerson">
                         <p>{{rent.address}}, {{rent.post_office}} </p>

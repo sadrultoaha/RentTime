@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from app.views.renters import *
+from app.views.owners import *
+from app.views.rentapp import *
 
 
 urlpatterns = [
@@ -22,7 +25,6 @@ urlpatterns = [
     path('', include('app.urls')),
     path('', include('django.contrib.auth.urls')),
     
-    #path('signup/', classroom.SignUpView.as_view(), name='signup'),
-    #path('signup/student/', students.StudentSignUpView.as_view(), name='student_signup'),
-    #ath('signup/teacher/', teachers.TeacherSignUpView.as_view(), name='teacher_signup'),
+    path('signup/renter/', RenterSignUpView.as_view(), name='renter_signup'),
+    #path('signup/owner/', owners.ownerSignUpView.as_view(), name='owner_signup'),
 ]

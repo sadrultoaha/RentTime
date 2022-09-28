@@ -9,12 +9,9 @@
 # from django.utils.decorators import method_decorator
 # from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
 #                                   UpdateView)
-
 # from ..decorators import teacher_required
-# #from ..forms import BaseAnswerInlineFormSet, QuestionForm, TeacherSignUpForm
-# from ..forms import TeacherSignUpForm,TeachersChangeForm
-# from ..models import  User
-# #from ..models import Answer, Question, Quiz, User
+# from ..forms import *
+# from ..models import  *
 
 # from django.views import generic
 # from django.contrib.auth.forms import UserCreationForm, UserChangeForm,PasswordChangeForm,SetPasswordForm
@@ -76,3 +73,7 @@
 #         form = TeachersChangeForm(instance=user)
 #     context = {'form': form}
 #     return render(request, 'profile_edit.html', context)
+
+# def teacher(request):
+#     posts = User.objects.filter().order_by('username').exclude(student_Id__isnull=False)    
+#     return render(request, 'teachers.html', {'posts': posts})
