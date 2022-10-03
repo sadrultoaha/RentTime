@@ -1,168 +1,183 @@
 {% extends 'layout.html' %}
- {% load static %}
+{% load static %}
 
- {% block content %}
-    <main>
-        <div id="home">
-            <div class="container">
-                <div class="left-side-content">
-                    <h1>Rent Time - <span>Home Renting Made Simple</span></h1>
+{% block content %}
+<main>
+    <div id="home">
+        <div class="container">
+            <div class="left-side-content">
+                <h1>Rent Time - <span>Home Renting Made Simple</span></h1>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque repellendus quos debitis velit, unde fugit. Voluptatem assumenda recusandae necessitatibus cupiditate molestias magnam, asperiores excepturi!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque repellendus quos debitis
+                    velit, unde fugit. Voluptatem assumenda recusandae necessitatibus cupiditate molestias magnam,
+                    asperiores excepturi!</p>
 
-                    <button><a href="/about/">Explore More</a></button>
+                <button><a href="/about/">Explore More</a></button>
+            </div>
+
+            <h3 id="responsive-title">Rent Time - Home Renting Made Simple</h3>
+
+            <div class="right-side-content">
+                <div class="each-content-box">
+                    <h5>I need a roommate</h5>
+                    <p>Create a listing for a potential <br>roommate</p>
+                    <button><a href="/rents/{{'shared'}}/">Find Roommate</button></a>
                 </div>
 
-                <h3 id="responsive-title">Rent Time - Home Renting Made Simple</h3>
+                <div class="each-content-box">
+                    <h5>I need a room</h5>
+                    <p>Create a listing for a potential <br> roommate</p>
+                    <button><a href="/rents/{{'all'}}/">Find House</a></button>
+                </div>
 
-                <div class="right-side-content">
-                    <div class="each-content-box">
-                        <h5>I need a roommate</h5>
-                        <p>Create a listing for a potential <br>roommate</p>
-                        <button><a href="/rents/{{'shared'}}/">Find Roommate</button></a>
-                    </div>
-                    
-                    <div class="each-content-box">
-                        <h5>I need a room</h5>
-                        <p>Create a listing for a potential <br> roommate</p>
-                        <button><a href="/rents/{{'all'}}/">Find House</a></button>
-                    </div>
-    
-                    <div class="each-content-box">
-                        <h5>Add my vacant place </h5>
-                        <p>Create a listing for post ads</p>
-                        <button><a href="rents/new ">Add Place</a></button>
-                    </div>
+                <div class="each-content-box">
+                    <h5>Add my vacant place </h5>
+                    <p>Create a listing for post ads</p>
+                    <button><a href="rents/new ">Add Place</a></button>
                 </div>
             </div>
         </div>
-        <!-- Here End Home page  -->
+    </div>
+    <!-- Here End Home page  -->
 
-        <section id="all-seller">
-            <div class="container">
-                {% for rent in rents %}
-                <div class="seller">
-                    <img src="{% static 'Images/pic2.jpg' %}" alt="Picture of sell Item">
+    <section id="all-seller">
+        <div class="container">
+            {% for rent in rents %}
+            <div class="seller">
+                <a href="/rents/details/{{rent.id}}">
+                    <img src="{{rent.photo.url}}" alt="Picture of sell Item">
 
-                    <a href="/rents/details/{{rent.id}}"><h5>{{rent.address}}</h5></a>
+                    <h5>{{rent.address}}</h5>
 
                     <div class="price-and-ageOfPerson">
                         <p>{{rent.address}}, {{rent.post_office}} </p>
-                        <p>{{rent.owner}}</p>
                     </div>
+
 
                     <p>{{rent.description}}</p>
 
-                    {% if rent.is_booked %}
-                    
-                    <small>Booked</small> 
-                    
-                    {% else %}
-
                     <small>{{rent.availability_date}}</small>
 
-                    {% endif %}
-                </div>
-                <!-- End of each seller Post -->
-                {% endfor %}
-               
-            </div>            
-        </section>
-        <!-- End of Post section -->
+                </a>
+                <a href="/profile/{{rent.owner}}/">
+                    <p>{{rent.owner}}</p>
+                </a>
+                <a href="/rents/add-request/{{rent.id}}/" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Send Booking Request">
+                    <i class="fa fa-plus"></i>
+                </a>
+                {% if rent.is_shared %}
+                <a href="/profile/{{rent.renter}}/" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Contact with {{rent.renter}} to Share this Place">
+                    Share with {{rent.renter}}
+                </a>
+                {% else %}
+                <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Look for Roommates">
+                    <i class="fa fa-people-arrows"></i>
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <!-- End of each seller Post -->
 
-        <section id="pagination">
-            <div class="container">
-                <div class="numbers">
-                    <div class="number-wrapper">
-                        <div class="number active">
-                            <p>1</p>
-                        </div>
-                        
-                        <div class="number">
-                            <p>2</p>
-                        </div>
-        
-                        <div class="number">
-                            <p>3</p>
-                        </div>
-        
-                        <div class="elipse">
-                            <P>...</P>
-                        </div>
-        
-                        <div class="number">
-                            <p>7</p>
-                        </div>
+
+        </div>
+    </section>
+    <!-- End of Post section -->
+
+    <section id="pagination">
+        <div class="container">
+            <div class="numbers">
+                <div class="number-wrapper">
+                    <div class="number active">
+                        <p>1</p>
                     </div>
-    
-                    <div class="next-button">
-                        <button><a href="#">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></button>
+
+                    <div class="number">
+                        <p>2</p>
                     </div>
+
+                    <div class="number">
+                        <p>3</p>
+                    </div>
+
+                    <div class="elipse">
+                        <P>...</P>
+                    </div>
+
+                    <div class="number">
+                        <p>7</p>
+                    </div>
+                </div>
+
+                <div class="next-button">
+                    <button><a href="#">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></button>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Here start Testimonials -->
-        <section id="testimonials" class="testimonials">
-            <h3>Testimonials</h3>
-            <div class="container swiper">
-                <div class="carousel swiper-wrapper">
-                    <div class="testimonial swiper-slide">
-                        <div class="head">
-                            <div class="profile">
-                                <div class="clientImage">
-                                    <img src="images/cl-1.jpeg">
-                                </div>
-
-                                <div class="info">
-                                    <h4>Muhammad Rukon</h4>
-                                    <cite>Dhaka, Bangladesh.</cite>
-                                </div>
+    <!-- Here start Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <h3>Testimonials</h3>
+        <div class="container swiper">
+            <div class="carousel swiper-wrapper">
+                <div class="testimonial swiper-slide">
+                    <div class="head">
+                        <div class="profile">
+                            <div class="clientImage">
+                                <img src="images/cl-1.jpeg">
                             </div>
 
-                            <div class="stars">
-                                <span class="material-icons-sharp">star_rate</span>
-                                <span class="material-icons-sharp">star_rate</span>
-                                <span class="material-icons-sharp">star_rate</span>
-                                <span class="material-icons-sharp">star_rate</span>
-                                <span class="material-icons-sharp">star_rate</span>
+                            <div class="info">
+                                <h4>Muhammad Rukon</h4>
+                                <cite>Dhaka, Bangladesh.</cite>
                             </div>
                         </div>
 
-                        <p>Fast response, incredible service and good behavior. Work is up to the mark. Can communicate properly for better comprehension. Very much recommended.</p>
-                    </div>
-                    <!-- End of each testimonial -->
-                    <div class="testimonial swiper-slide">
-                        <div class="head">
-                            <div class="profile">
-                                <div class="clientImage">
-                                    <img src="images/cl-2.jpg">
-                                </div>
-
-                                <div class="info">
-                                    <h4>Mehrab Hasan Anim</h4>
-                                    <cite>Dhaka, Bangladesh.</cite>
-                                </div>
-                            </div>
-
-                            <div class="stars">
-                                <span class="material-icons-sharp">star_rate</span>
-                                <span class="material-icons-sharp">star_rate</span>
-                                <span class="material-icons-sharp">star_rate</span>
-                                <span class="material-icons-sharp">star_rate</span>
-                                <span class="material-icons-sharp">star_rate</span>
-                            </div>
+                        <div class="stars">
+                            <span class="material-icons-sharp">star_rate</span>
+                            <span class="material-icons-sharp">star_rate</span>
+                            <span class="material-icons-sharp">star_rate</span>
+                            <span class="material-icons-sharp">star_rate</span>
+                            <span class="material-icons-sharp">star_rate</span>
                         </div>
-
-                        <p>Remarkable service and upright behavior. Work is exceptionally good. Can communicate properly for betterment. Can work accordingly just like you wanted. worth it recommended.</p>
                     </div>
-                    <!-- End of each testimonial -->
+
+                    <p>Fast response, incredible service and good behavior. Work is up to the mark. Can communicate
+                        properly for better comprehension. Very much recommended.</p>
                 </div>
-                <div class="swiper-scrollbar"></div>
-            </div>
-        </section>
-        <!-- End of Testimonials -->
-    </main>
-    <!-- End of Main part -->
+                <!-- End of each testimonial -->
+                <div class="testimonial swiper-slide">
+                    <div class="head">
+                        <div class="profile">
+                            <div class="clientImage">
+                                <img src="images/cl-2.jpg">
+                            </div>
 
-    {% endblock %}
+                            <div class="info">
+                                <h4>Mehrab Hasan Anim</h4>
+                                <cite>Dhaka, Bangladesh.</cite>
+                            </div>
+                        </div>
+
+                        <div class="stars">
+                            <span class="material-icons-sharp">star_rate</span>
+                            <span class="material-icons-sharp">star_rate</span>
+                            <span class="material-icons-sharp">star_rate</span>
+                            <span class="material-icons-sharp">star_rate</span>
+                            <span class="material-icons-sharp">star_rate</span>
+                        </div>
+                    </div>
+
+                    <p>Remarkable service and upright behavior. Work is exceptionally good. Can communicate properly for
+                        betterment. Can work accordingly just like you wanted. worth it recommended.</p>
+                </div>
+                <!-- End of each testimonial -->
+            </div>
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </section>
+    <!-- End of Testimonials -->
+</main>
+<!-- End of Main part -->
+
+{% endblock %}

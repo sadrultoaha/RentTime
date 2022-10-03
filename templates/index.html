@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
- {% load static %}
+{% load static %}
+
 {% block title %}DashBoard{% endblock %}
 
 {% block content %}
@@ -8,33 +9,44 @@
     <div class="container">
         {% for rent in rents %}
         <div class="seller">
-            <img src="{% static 'Images/pic2.jpg' %}" alt="Picture of sell Item">
+            <a href="/rents/details/{{rent.id}}">
+                <img src="{{rent.photo.url}}" alt="Picture of sell Item">
 
-            <a href="/rents/details/{{rent.id}}"><h5>{{rent.address}}</h5></a>
+                <h5>{{rent.address}}</h5>
 
-            <div class="price-and-ageOfPerson">
-                <p>{{rent.address}}, {{rent.post_office}} </p>
+                <div class="price-and-ageOfPerson">
+                    <p>{{rent.address}}, {{rent.post_office}} </p>
+                </div>
+
+
+                <p>{{rent.description}}</p>
+
+                <small>{{rent.availability_date}}</small>
+
+            </a>
+            <a href="/profile/{{rent.owner}}/">
                 <p>{{rent.owner}}</p>
-            </div>
-
-            <p>{{rent.description}}</p>
-
-            {% if rent.is_booked %}
-            
-            <small>Booked</small> 
-            
+            </a>
+            <a href="/rents/add-request/{{rent.id}}/" class="btn btn-primary" data-toggle="tooltip"
+                data-placement="bottom" title="Send Booking Request">
+                <i class="fa fa-plus"></i>
+            </a>
+            {% if rent.is_shared %}
+            <a href="/profile/{{rent.renter}}/" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom"
+                title="Contact with {{rent.renter}} to Share this Place">
+                Share with {{rent.renter}}
+            </a>
             {% else %}
-
-            <small>{{rent.availability_date}}</small>
-
+            <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-dark" data-toggle="tooltip"
+                data-placement="bottom" title="Look for Roommates">
+                <i class="fa fa-people-arrows"></i>
+            </a>
             {% endif %}
         </div>
-        <!-- End of each seller Post -->
         {% endfor %}
-       
-    </div>            
+        <!-- End of each seller Post -->
+    </div>
 </section>
 <!-- End of Post section -->
 
 {% endblock %}
-

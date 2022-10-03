@@ -1,101 +1,124 @@
 {% extends 'layout.html' %}
- {% load static %}
+{% load static %}
 {% block title %}DashBoard{% endblock %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
-    <!-- Here strat main part -->
-    <main>
-        <div id="register-page">
-            <div class="container">            
-                <div class="form-box">
-                    <div class="button-box">
-                        <div id="btn"></div>
-                        <button type="button" onclick="student()" id="studentBtn" class="toggle-btn">Student</button>
-                        <button type="button" class="toggle-btn" id="ownerBtn" onclick="owner()">Owner</button>
-                    </div>
+<!-- Here strat main part -->
+<main>
 
-                    <h4>Member Register</h4>
+    <div id="register-page">
+        <div class="container">
+            <div class="form-box">
+                <h4 id="signup-text">Student Register</h4>
 
-                    <!-- For student -->
-                    <form id="student" class="input-group">
-                        <div class="name-field">
-                            <div>
-                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="First Name" type="text" required>
-                            </div>
-                            
-                            <div>
-                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="Last Name" type="text" required>
-                            </div>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-envelope-o" aria-hidden="true"></i> <input placeholder="Email" type="email" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Password" type="password" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Re-type Password" type="password" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="condition">
-                            <p><input type="checkbox" id="">I agree with <a href="privacy.html">term and condition</a>.</p>
-                        </div>
-                    
-                        <button id="register-btn"><a href="student-regi-multi-page.html">Next</a></button>
-                    
-                        <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
-                    </form>
-
-                    <!-- For student -->
-                    <form id="owner" class="input-group">
-                        <div class="name-field">
-                            <div>
-                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="First Name" type="text" required>
-                            </div>
-                            
-                            <div>
-                                <i class="fa fa-user" aria-hidden="true"></i> <input placeholder="Last Name" type="text" required>
-                            </div>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-envelope-o" aria-hidden="true"></i> <input placeholder="Email" type="email" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Password" type="password" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="input-field">
-                            <i class="fa fa-lock" aria-hidden="true"></i> <input placeholder="Re-type Password" type="password" required>
-                        </div>
-                        <!-- Each Input Field -->
-                    
-                        <div class="condition">
-                            <p><input type="checkbox" id="">I agree with <a href="privacy.html">term and condition</a>.</p>
-                        </div>
-                    
-                        <button id="register-btn"><a href="owner-regi-multi-page.html">Next</a></button>
-                    
-                        <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
-                    </form>
+                <div class="button-box">
+                    <div id="btn"></div>
+                    <a type="button" onclick="student()" id="studentBtn" class="toggle-btn"> Student </a>
+                    <a type="button" onclick="owner()" id="ownerBtn" class="toggle-btn"> Owner </a>
                 </div>
 
-                <img src="images/login.svg" alt="Picture of Login Picture">
+
+                <!-- For student -->
+                <form method="post" id="student" class="input-group" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input class="" type="text" name="username" required="" maxlength="64"
+                            placeholder="User Name" />
+                    </div>
+
+                    <div class="name-field">
+                        <div>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <input class="" type="text" name="first_name" required="" maxlength="64"
+                                placeholder="First Name" />
+                        </div>
+
+                        <div>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <input class="" type="text" name="last_name" required="" maxlength="64"
+                                placeholder="Last Name" />
+                        </div>
+                    </div>
+        
+
+                    <div class="input-field">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <input class="" type="email" name="email" required="" maxlength="64" placeholder="Email" />
+                    </div>
+             
+
+                    <div class="input-field">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input class="" type="password" name="password1" id="exampleInputPassword1" required=""
+                            maxlength="64" placeholder="Password" />
+                    </div>
+
+
+                    <div class="input-field">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input class="" type="password" name="password2" id="{{form.id_password_repeat}}" required=""
+                            maxlength="64" placeholder="Confirm password" />
+                    </div> 
+
+                    <div class="input-field">
+                        {{form.photo}}
+                    </div>
+
+                    <button id="register-btn" type="submit">Submit</button>
+
+                    <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
+                </form>
+
+                <!-- For student -->
+                <!--form method="post" id="owner" class="input-group">
+                    {% csrf_token %}
+                    <div class="name-field">
+                        <div>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <input class="" type="text" name="username" required="" maxlength="64"
+                                placeholder="User Name" />
+                        </div>
+
+                        <div>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <input class="" type="text" name="username" required="" maxlength="64"
+                                placeholder="User Name" />
+                        </div>
+                    </div>
+
+
+                    <div class="input-field">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <input class="" type="email" name="email" required="" maxlength="64"
+                            placeholder="Email Address" />
+                    </div>
+
+
+                    <div class="input-field">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input class="" type="password" name="password1" id="exampleInputPassword1" required=""
+                            maxlength="64" placeholder="Password" />
+                    </div>
+
+
+                    <div class="input-field">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input class="" type="password" name="password2" id="{{form.id_password_repeat}}" required=""
+                            maxlength="64" placeholder="Confirm password" />
+                    </div>
+
+                    <button id="register-btn"><a href="owner-regi-multi-page.html">Submit</a></button>
+
+                    <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
+                </form-->
             </div>
+
+            <img src="{% static 'images/login.svg' %}" alt="Picture of Login Picture">
         </div>
-    </main>
-    <!-- Here End main part -->
+    </div>
+</main>
+<!-- Here End main part -->
 
 {% endblock %}

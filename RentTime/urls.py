@@ -18,6 +18,8 @@ from django.urls import include, path
 from app.views.renters import *
 from app.views.owners import *
 from app.views.rentapp import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -27,4 +29,4 @@ urlpatterns = [
     
     path('signup/renter/', RenterSignUpView.as_view(), name='renter_signup'),
     #path('signup/owner/', owners.ownerSignUpView.as_view(), name='owner_signup'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
