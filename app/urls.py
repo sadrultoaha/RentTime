@@ -10,12 +10,16 @@ urlpatterns = [
     path('about/', rentapp.about, name='about'),
     path('rents/new/', rents.rent_new, name='rent_new'),
     path('rents/<option>/', rents.index, name='index'),
-    path('rents/details/<pk>/', rents.details, name='details'),
+    path('rents/details/<int:pk>/', rents.details, name='details'),
     path('rents/details/<int:pk>/edit/', rents.rent_edit, name='rent_edit'),
     path('rents/add-request/<int:pk>/', rents.add_rent_request, name='add_rent_request'),
     path('rents/delete_request/<int:pk>/', rents.delete_rent_request, name='delete_rent_request'),
     path('rents/accept_request/<int:pk>/', rents.accept_rent_request, name='accept_rent_request'),
     path('rents/add_roommate_status/<int:pk>/', rents.add_roommate_status, name='add_roommate_status'),
+    path('requests/', rents.requested_rents, name='requests'),
+    path('listings/', rents.added_rents, name='added_rents'),
+    path('approvals/', rents.approved_bookings, name='approved_bookings'),
+
 
     #path('<user>/list/',renters.list, name='list'),
     #path('update/',renters.update),

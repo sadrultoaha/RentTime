@@ -44,7 +44,7 @@
         <div class="container">
             {% for rent in rents %}
             <div class="seller">
-                <a href="/rents/details/{{rent.id}}">
+                <a href="/rents/details/{{rent.id}}" title="Click for Details">
                     <img src="{{rent.photo.url}}" alt="Picture of sell Item">
 
                     <h5>{{rent.address}}</h5>
@@ -66,11 +66,11 @@
                     <i class="fa fa-plus"></i>
                 </a>
                 {% if rent.is_shared %}
-                <a href="/profile/{{rent.renter}}/" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Contact with {{rent.renter}} to Share this Place">
-                    Share with {{rent.renter}}
+                <a href="/profile/{{rent.renter}}/" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Contact with {{rent.renter}} to Share this Place">
+                    {{rent.renter}} <span style="font-size: 80%;">is Looking for Roommate</span> 
                 </a>
                 {% else %}
-                <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Look for Roommates">
+                <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-outline-dark " data-toggle="tooltip" data-placement="bottom" title="Look for Roommates">
                     <i class="fa fa-people-arrows"></i>
                 </a>
                 {% endif %}

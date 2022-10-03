@@ -65,7 +65,7 @@ def RentersProfile_edit(request,user):
         form = RenterChangeForm(request.POST, instance=user)
         if form.is_valid():
             user = form.save()
-            return redirect('RentersProfile',user=user)
+            return redirect('RentersProfile', user=user)
     else:
         form = RenterChangeForm(instance=user)
     context = {'form': form}

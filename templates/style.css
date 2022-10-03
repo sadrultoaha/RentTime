@@ -1067,8 +1067,7 @@ nav .container .profile-icon img{
 }
 .setting-menu{
     position : absolute;
-    width: 90%;
-    max-width: 450px;
+    width: auto;
     background-color: #F5F5F5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     top: 108%;

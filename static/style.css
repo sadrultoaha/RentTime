@@ -38,7 +38,7 @@ body{
     font-size: 15px;
 }
 img{
-    width: 100%;
+    max-width: 100%;
 }
 html{
     scroll-behavior: smooth;
@@ -235,11 +235,9 @@ button a:hover{
 button#register-btn{
     background: transparent;
     position: relative;
-    left:-20px
 }
 #login-link{
     position: relative;
-    left:-20px
 }
 button#register-btn a:hover{
     text-decoration: none;
@@ -761,7 +759,7 @@ h4.footer-title, h4.footer-title a {
 /* Regitration from design Start*/
 #register-page .container .form-box{
     position: relative;
-    height: 750px;
+    height: auto;
     overflow: hidden;
 }
 #register-page .container .form-box .input-group{
