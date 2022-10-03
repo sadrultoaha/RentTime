@@ -56,12 +56,15 @@ def add_rent_request(request, pk):
         renter = requested_by,
         is_roommate = requested_flat.is_shared)
     rent_req.save()
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('/requests/')
 
 def delete_rent_request(request, pk):
     requested_item = get_object_or_404(Request, pk=pk)
-    requested_item.delete()
-    return HttpResponseRedirect('/')
+    #requested_item.delete()
+    requested_item.is_deleted = True
+    requested_item.modified_date = timezone.now()
+    requested_item.save()
+    return HttpResponseRedirect('/requests/')
 
 def accept_rent_request(request, pk):
     requested_item = get_object_or_404(Request, pk=pk)
@@ -89,10 +92,10 @@ def add_roommate_status(request, pk):
 
 def requested_rents(request):
     if request.user.is_owner:
-        requests = Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True).filter(owner = request.user)))
+        requests = Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True).filter(owner = request.user)), is_deleted = False )
     elif request.user.is_superuser:
-        requests = list( Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True).filter(owner = request.user))))
-        requests.extend( Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True)), renter = request.user))
+        requests = list( Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True).filter(owner = request.user)), is_deleted = False))
+        requests.extend( Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True)), renter = request.user, is_deleted = False))
        
     else:
         requests = Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True)), renter = request.user)

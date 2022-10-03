@@ -4,6 +4,7 @@ from ..models import *
 
 def home(request):
     rents = Rent.objects.filter(is_deleted=False, is_booked=False).order_by('-created_date')
+    
     return render(request, 'home.html', {'rents': rents})
 
 def about(request):
