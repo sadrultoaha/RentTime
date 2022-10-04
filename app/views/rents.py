@@ -1,8 +1,6 @@
 from msilib.schema import CreateFolder
-
 from django.http import HttpRequest, HttpResponseRedirect
 from numpy import append
-
 from app.views import owners
 from ..models import *
 from ..forms import *
@@ -20,6 +18,10 @@ def index(request, option):
 def details(request, pk):
     rent = get_object_or_404(Rent, pk=pk)
     return render(request, 'rent-details.html', {'rent': rent})
+
+def delete(request, pk):
+    rent = get_object_or_404(Rent, pk=pk)
+    return HttpResponseRedirect('/rents/all/')
 
 def rent_new(request):
     if request.method == "POST":
@@ -81,7 +83,6 @@ def accept_rent_request(request, pk):
 
     return HttpResponseRedirect('/requests/')
 
-
 def add_roommate_status(request, pk):
     rent = get_object_or_404(Rent, pk=pk)
     rent.is_shared = True
@@ -100,7 +101,6 @@ def requested_rents(request):
     else:
         requests = Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True)), renter = request.user)
     return render(request, 'requests.html', {'requests': requests})
-
 
 def added_rents(request):
     rents = Rent.objects.filter( owner = request.user, is_deleted=False, is_booked=False).order_by('-created_date')

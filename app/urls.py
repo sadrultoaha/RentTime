@@ -10,24 +10,31 @@ urlpatterns = [
     path('about/', rentapp.about, name='about'),
     path('rents/new/', rents.rent_new, name='rent_new'),
     path('rents/<option>/', rents.index, name='index'),
-    path('rents/details/<int:pk>/', rents.details, name='details'),
+    path('rents/details/<int:pk>/', rents.details, name='rent_details'),
+    path('rents/delete/<int:pk>/', rents.delete, name='rent_delete'),
     path('rents/details/<int:pk>/edit/', rents.rent_edit, name='rent_edit'),
+
     path('rents/add-request/<int:pk>/', rents.add_rent_request, name='add_rent_request'),
     path('rents/delete_request/<int:pk>/', rents.delete_rent_request, name='delete_rent_request'),
     path('rents/accept_request/<int:pk>/', rents.accept_rent_request, name='accept_rent_request'),
     path('rents/add_roommate_status/<int:pk>/', rents.add_roommate_status, name='add_roommate_status'),
+
     path('requests/', rents.requested_rents, name='requests'),
     path('listings/', rents.added_rents, name='added_rents'),
     path('approvals/', rents.approved_bookings, name='approved_bookings'),
 
+    path('blogs/', rentapp.blogs, name='blogs'),
+    path('blogs/new/', rentapp.blog_new, name='blogs_new'),
+    path('blogs/details/<int:pk>/', rentapp.blog_details, name='blog_details'),
+    path('blogs/details/<int:pk>/edit/', rentapp.blog_edit, name='blog_edit'),
 
-    #path('<user>/list/',renters.list, name='list'),
     #path('update/',renters.update),
     #path('programmers/',renters.Programmers,name='Programmers'),
 
     #path('profile/<user>/',renters.ProgrammersProfile, name='ProgrammersProfile'),
     #path('<user>/profile_edit/',renters.ProgrammersProfile_edit, name='ProgrammersProfile_edit'),
     #path('<user>/profile_edit/Password/',renters.ProgrammersPassword.as_view(), name='ProgrammersPassword'),
+
     #path('owners/',renters.owner,name='owners'),
     #path('owner/profile/<user>/',owners.ownersProfile, name='ownersProfile'),
     #path('owner/<user>/profile_edit/',owners.ownersProfile_edit, name='ownersProfile_edit'),

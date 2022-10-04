@@ -24,6 +24,20 @@ class RentForm(forms.ModelForm):
     def __str__(self):
         return self.owner
 
+
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        fields = ('title', 'description', 'photo')
+        # widgets = {
+        #     'title': forms.TextInput(attrs={'style': 'width: 500px;' , 'class': 'form-control'}),
+        #     'description': forms.Textarea(attrs={'style': 'width: 600px;' , 'class': 'form-control'}),
+        #     'photo': forms.FileInput(attrs={'accept': 'image/*;capture=camera'})
+        # }
+
+    def __str__(self):
+        return self.title
+
 class RenterChangeForm(forms.ModelForm):
     class Meta:
         model = User

@@ -1,177 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>rent-time - blog-details</title>
-        
-        <!-- Googler Font Link  -->
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
-    
-        <!-- Font Awesome CDN Link -->
-        <script src="https://kit.fontawesome.com/ddb312c79b.js" crossorigin="anonymous"></script>
-    
-        <!-- CSS Stylesheet Link -->
-        <link rel="stylesheet" href="style.css">
-    </head>
-<body>
-    <header>
-        <nav>
-            <div class="container">
-                <a href="index.html"><h3>RentTime</h3></a>
-                <!-- <img src="#" alt="Logo of Rent Time"> -->
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}DashBoard{% endblock %}
 
-                <div id="search-bar-for-responsive">
-                    <input type="text" name="" id="responive-searchbar" placeholder="Search share accommod..."> <i class="fa fa-search" aria-hidden="true"></i>
-                </div>
-    
-                <ul id="nav-items">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="blog-page.html">Blog</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <div class="dark-and-light-theme">
-                        <a class="search-bar"><input type="text" ><i class="fa fa-search" aria-hidden="true"></i></a>
-                        <button class="dark"><i class="fa fa-moon-o" aria-hidden="true"></i></button>
-                        <button class="light"><i class="fa fa-sun-o" aria-hidden="true"></i></button>
-                    </div>
-                </ul>
-    
-                <!-- Responsive Nav Bar -->
-                <div class="responsive-navbar">
-                    <button id="nav-bar-open"><i class="fa fa-bars" aria-hidden="true"></i></button>
-                    <button id="nav-bar-close"><i class="fa fa-times" aria-hidden="true"></i></button>
-                </div>
+{% block content %}
 
-            </div>
-        </nav>
-    </header>
-    <!-- End Of Header  -->
-    <main>
-        <section id="blog">
-            <div class="container">
-                <h3>Roommate Etiquette 101</h3>
-                <small>Published on July 12. 2022</small>
-                <img src="images/dubble-row.jpg" alt="Piture Of blog">
-                
-                <p>The internet is overflowing with thoughts and advice on how to get along with your apartment roommate. We want you to be a good roommate, not because of the rules, but because of you. These are not rules – this is Roommate Etiquette 101, the path to being good roommates by doing what's right by others. </p>
-                <br>
-
-                <div>
-                    <h4>Tip to get along</h4>
-                </div>
-
-                <div>
-                    <P><strong>1. Be decent in the bathroom</strong></P>
-                    <p>Keep the bathroom clean because nobody likes a dirty or smelly bathroom. Clean toothpaste and hair off the counter. Put your toothbrush and hairbrush away. No one wants to touch those. Don't take too long in the shower and be considerate of not using up the hot water when others are waiting. And for goodness sake, replace the toilet paper when you use up the roll. Bonus points for putting it on the right way up, too.</p>
-                </div>
-
-                <div>
-                    <P><strong>2. Ask before you borrow</strong></P>
-                    <p>Don't borrow anything from your roommate without express permission beforehand. If you've asked before, even if the answer was yes, ask again. And if you do borrow something from your roommate – clothes, hairspray, juice, whatever – return or replace it as soon as you can.</p>
-                </div>
-
-                <div>
-                    <P><strong>3. Don’t bring people without informing</strong></P>
-                    <p>If you have a significant other, be respectful of everyone else in the apartment. Your SO shouldn't stay too often or too long. They shouldn't regularly use common areas alone. Your other roommates might not feel comfortable hanging out with them. </p>
-                </div>
-
-                <div>
-                    <P><strong>4. Do your chores</strong></P>
-                    <p>Yes, you probably should have a plan to deal with common chores. Share them equally and when it's your turn, do them. But start with focusing on your own messes. If you eat or cook, clean up, and don't pile up. Do your dishes. If you make a mess, pick it up. If the trash is full or smelly, take it out. See what chores you can split. If one of you loves to cook, the other should clean. If one of you doesn't hate vacuuming, the other should do the laundry. Make it fun!</p>
-                </div>
-
-                <div>
-                    <P><strong>5. Be fiscally responsible </strong></P>
-                    <p>Pay your half of the rent and utilities in full and on time. Period.</p>
-                </div>
-
-                <div>
-                    <P><strong>6. Be honest</strong></P>
-                    <p>Always be truthful with your roommate. If you break something, cop to it. If your boyfriend or girlfriend needs to stay longer than you expect, ask first, not after. If you're going to be late with the rent, discuss it sooner rather than later. If you violate any of the above suggestions, apologize.</p>
-                </div>
-
-                <div>
-                    <p>If you feel someone isn't following Roommate Etiquette 101, don't get all in a huff. Be sensitive, because what's a big deal right now might not seem so big in a different light.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-    <!-- Here start footer -->
-    <footer id="footer">
+<main>
+    <section id="blog">
         <div class="container">
-            <div class="intro">
-                    <h4 class="footer-title"><a href="#" class="logo">Rent Time</a></h4>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                    <a href="#">Read more <span class="fa fa-chevron-right" style="font-size: 11px;"></span></a>
-            </div>
+            <h3>{{blog.title}}</h3>
+            <small>Published on {{blog.created_date}}</small>
+            
+            <img src="{{blog.photo.url}}" width="1100" height="550">
 
-            <div class="Services">
-                <h4 class="footer-title">Services</h4>
-                <ul>
-                    <li><a href="#">Map Direction</a></li>
-                    <li><a href="#">Accomodation Services</a></li>
-                    <li><a href="#">Great Experience</a></li>
-                    <li><a href="#">Perfect central location</a></li>
-                </ul>
-            </div>    
-
-            <div class="tag-cloud">
-                <h4 class="footer-title">Tags</h4>
-                <div class="short-link">
-                    <a href="#" class="tag-cloud-link">apartment</a>
-                    <a href="#" class="tag-cloud-link">home</a>
-                    <a href="#" class="tag-cloud-link">rental</a>
-                    <a href="#" class="tag-cloud-link">rent</a>
-                    <a href="#" class="tag-cloud-link">house</a>
-                    <a href="#" class="tag-cloud-link">place</a>
-                    <a href="#" class="tag-cloud-link">sleep</a>
-                </div>
-            </div>    
-
-            <div class="subscribe">
-                <div class="subscribeWrapper">
-                    <h4 class="footer-title">Subcribe</h4>
-                    <form action="#" class="subscribe-form">
-                        <input type="email" class="form-control rounded-left" placeholder="Enter email address" required>
-                        <button type="submit"><i class="fa fa-paper-plane"></i></button>
-                    </form>
-                </div>
-
-                <div id="social-links">
-                    <h4>Follow us</h4>
-                    <ul>
-                        <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                        <li><a href="#"><span class="fa fa-instagram"></span></a></li>
-                    </ul>
-                </div>
-            </div>       
+            <div style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            color: #303030;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            line-height: 200%;">{{blog.description}}</div>
+           
         </div>
+    </section>
+</main>
 
-        <div class="container hrtag">
-            <hr>
-        </div>
-
-        <div class="copyright-message-and-privacy">
-            <div class="container copyright-box">
-                <div class="copyright-message">
-                    <p>
-                        Copyright &copy; 2022 All rights reserved | Developed by Mariam Maherin Fariha
-                    </p>
-                </div>
-                <div class="terms-privacy">
-                    <p>
-                        <a href="privacy.html">Terms</a>
-                        <a href="privacy.html">Privacy</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Main script file -->
-    <script src="main.js"></script>
-</body>
-</html>
+{% endblock %}

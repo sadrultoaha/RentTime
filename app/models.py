@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from datetime import datetime
 from django.utils import timezone
 from PIL import Image
+from matplotlib.pyplot import title
 
 class Division(models.Model):
     code = models.CharField(max_length = 50)
@@ -96,4 +97,23 @@ class Request(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class Blog(models.Model):
+    author = models.ForeignKey('User', related_name='blog_author', on_delete=models.CASCADE)
+    title = models.CharField(max_length=255, null=False)
+    description = models.TextField()
+    is_deleted = models.BooleanField(default=False)
+    created_date = models.DateTimeField(default=timezone.now)
+    modified_date = models.DateTimeField(null = True)
+    photo = models.ImageField(upload_to='images/', default='images/home.jpg', blank=True)
+
+    def __str__(self):
+        return str(self.id)
+
+    # def save(self):
+    #     super().save() 
+    #     img = Image.open(self.photo.path)
+    #     new_img = img.resize((350, 450), resample=Image.ANTIALIAS)
+    #     new_img.save(self.photo.path)
 
