@@ -28,5 +28,5 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     
     path('signup/renter/', RenterSignUpView.as_view(), name='renter_signup'),
-    #path('signup/owner/', owners.ownerSignUpView.as_view(), name='owner_signup'),
+    path('signup/owner/', OwnerSignUpView.as_view(), name='owner_signup'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

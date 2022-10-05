@@ -5,6 +5,7 @@ from datetime import datetime
 from django.utils import timezone
 from PIL import Image
 from matplotlib.pyplot import title
+from traitlets import default
 
 class Division(models.Model):
     code = models.CharField(max_length = 50)
@@ -49,10 +50,17 @@ class PostOffice(models.Model):
     def __str__(self):
         return self.name
 
+
 class User(AbstractUser):
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other')
+    )
     is_renter = models.BooleanField(default = False)
     is_owner = models.BooleanField(default = False)
-    nid = models.CharField(max_length=13, null = True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='')
+    nid = models.CharField(max_length=13, null=True)
     mobile_No = models.CharField(max_length=11, null = True)
     affiliation_name = models.CharField(max_length=20, null = True)
     affiliation_id = models.CharField(max_length=20, null = True)
@@ -70,6 +78,7 @@ class Rent(models.Model):
     address = models.CharField(max_length = 255, null=False)
     description = models.TextField()
     availability_date = models.DateTimeField(null = False)
+    rental = models.IntegerField(null = False, default=0)
     is_booked = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
     is_shared = models.BooleanField(default = False)

@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %} Rent Update {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<main>
+    <div id="settings">
+        <div class="container">
+            <h4>Settings</h4>
+
+            <div class="setting-items">
+                <b>Edit Personal Information</b>
+
+                <form method="POST" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    {{form | crispy}}
+
+                    {% if form.errors %}
+                    <h5 style="color:purple"> This fields are required :</h5>
+                    {% for error in form.errors %}
+                    <pre style="color: red ; background-color:#e0e0e0;">{{ error }}</pre>
+                    {% endfor %}
+                    {% endif %}
+
+                    <!-- 
+                    <div class="s-item">
+                        <p>First Name:</p>
+                        <input class="" type="text" name="first_name" value="{{user.first_name}}" />
+                    </div>
+                    <div class="s-item">
+                        <p>Last Name:</p>
+                        <input class="" type="text" name="last_name" value="{{user.last_name}}" />
+                    </div>
+
+                    <div class="s-item">
+                        <p>Email</p>
+                        <input class="" type="text" name="email" value="{{user.email}}" />
+                    </div>
+
+                    <div class="s-item">
+                        <p>Phone Number</p>
+                        <input class="" type="text" name="mobile_No" value="{{user.mobile_No}}" />
+                    </div>
+
+                    <div class="s-item">
+                        <p>Nid</p>
+                        <input class="" type="text" name="nid" placeholder="{{user.nid}}" />
+                    </div>
+
+                    <div class="s-item">
+                        <p>gender</p>
+                        {{ form.gender}}
+                    </div>
+
+                    <div class="s-item">
+                        <p>Date Of Birth</p>
+                        <small>{{user.dob}}</small>
+                        <input type="date" value="{{user.dob}}">
+                    </div>
+
+                    <div class="s-item">
+                        <p>Institute Name:</p>
+                        <input class="" type="text" name="affiliation_name" value="{{user.affiliation_name}}" />
+                    </div>
+
+                    <div class="s-item">
+                        <p>Institute Id:</p>
+                        <input class="" type="text" name="affiliation_id" placeholder="{{user.affiliation_id}}" />
+                    </div>
+
+                    <div class="s-item">
+                        <p>Present Address:</p>
+                        <input class="" type="text" name="present_address" value="{{user.present_address}}" />
+                    </div>
+
+                    <div class="s-item">
+                        <p>Profile Photo:</p>
+                        {{form.photo}}
+                    </div> 
+              <button id="settings-update-btn" class="btn btn-sm btn-dark" type="submit">SAVE AND UPDATE</button> 
+                -->
+
+                    <input id="settings-update-btn" type="submit" class="btn btn-success" value="Update">
+                </form>
+
+                <div class="divider-border"></div>
+
+                <p id="setting-change-pass"><a href="/profile_edit/password/">Change Password</a></p>
+                <!--p id="setting-deactive-acc"><a href="#">Deactivate Account</a></p-->
+
+            </div>
+
+        </div>
+    </div>
+</main>
+
+{% endblock %}

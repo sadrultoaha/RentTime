@@ -12,7 +12,7 @@ class DatePickerInput(forms.DateInput):
 class RentForm(forms.ModelForm):
     class Meta:
         model = Rent
-        fields = ('address','post_office','availability_date', 'description', 'photo')
+        fields = ('address','post_office','rental', 'availability_date', 'description', 'photo')
         widgets = {
             'availability_date' : DatePickerInput(attrs={'style': 'width: 300px;', 'class': 'form-control' }),
             'address': forms.TextInput(attrs={'style': 'width: 500px;' , 'class': 'form-control'}),
@@ -29,11 +29,6 @@ class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
         fields = ('title', 'description', 'photo')
-        # widgets = {
-        #     'title': forms.TextInput(attrs={'style': 'width: 500px;' , 'class': 'form-control'}),
-        #     'description': forms.Textarea(attrs={'style': 'width: 600px;' , 'class': 'form-control'}),
-        #     'photo': forms.FileInput(attrs={'accept': 'image/*;capture=camera'})
-        # }
 
     def __str__(self):
         return self.title
@@ -41,9 +36,9 @@ class BlogForm(forms.ModelForm):
 class RenterChangeForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username','nid','email','first_name','last_name','mobile_No','affiliation_name', 'affiliation_id', 'dob', 'present_address')
+        fields = ('nid','email','first_name','last_name','gender','mobile_No','affiliation_name', 'affiliation_id', 'dob', 'present_address','photo')
         widgets = {
-            'username' : forms.TextInput(attrs={'placeholder': 'Username','required':'True' }),
+           
             'nid': forms.TextInput(attrs={'placeholder': 'Nid', 'required':'False'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Email', 'required':'True'}),
             'first_name':forms.TextInput(attrs={'placeholder': 'First Name', 'required':'True'}),
@@ -52,8 +47,10 @@ class RenterChangeForm(forms.ModelForm):
             'affiliation_name':forms.TextInput(attrs={'placeholder': 'Institute Name', 'required':'False'}),
             'affiliation_id':forms.TextInput(attrs={'placeholder': 'Your Institutional Id', 'required':'False'}),
             'dob': DatePickerInput(attrs={'placeholder': 'Date of Birth', 'required':'True'}),
-            'present_address':forms.TextInput(attrs={'placeholder': 'Present Address', 'required':'True'})
+            'present_address':forms.TextInput(attrs={'placeholder': 'Present Address', 'required':'True'}),
+            'photo': forms.FileInput(attrs={'accept': 'image/*;capture=camera'})
         }
+        
 
 class OwnerChangeForm(forms.ModelForm):
     class Meta:
@@ -92,11 +89,12 @@ class OwnerSignUpForm(UserCreationForm):
         
     def save(self, commit=True):
         user = super().save(commit='False')
+        owner_group = Group.objects.get(name='owner') 
+        user.groups.add(owner_group)
         user.is_owner = True
         if commit:
             user.save()
         return user
-
 
 class RenterSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):

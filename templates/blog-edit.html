@@ -4,18 +4,18 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div style = " background:linear-gradient(to top, rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.600)), url({% static 'images/recent.jpg' %});
+<div style=" background:linear-gradient(to top, rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.600)), url({% static 'images/recent.jpg' %});
 background-position: center;" class="row" class="row">
     <div class="col-lg-7 mx-auto">
         <div class="card mt-2 mx-auto bg-dark">
             <div class="card-body bg-light">
                 <div class="container">
                     <h2 class="text-center">Add New Blog</h2>
-                    
+
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group">
-                             
+
                             {{ form.title | as_crispy_field}}
                         </div>
 
@@ -25,17 +25,26 @@ background-position: center;" class="row" class="row">
 
                         <div class="form-group">
                             {{form.photo | as_crispy_field }}
-                        </div> 
+                        </div>
 
                         <br>
-                        <p> <b>Onwer:</b>{% if req.user.first_name %} {{ req.user.first_name }} {{ req.user.last_name }} {% else %} {{ req.user }} {% endif %} </p>
+                        <p> <b>Onwer:</b>{% if req.user.first_name %} {{ req.user.first_name }} {{ req.user.last_name }}
+                            {% else %} {{ req.user }} {% endif %} </p>
+
+                        {% if form.errors %}
+                        <h5 style="color:purple"> This fields are required :</h5>
+                        {% for error in form.errors %}
+                        <pre style="color: red ; background-color:#e0e0e0;">{{ error }}</pre>
+                        {% endfor %}
+                        {% endif %}
+
                         <div class="form-group text-center">
                             <button class="btn btn-primary" type="submit"> Save </button>
                         </div>
                     </form>
-                    
+
                 </div>
-                
+
             </div>
         </div>
     </div>

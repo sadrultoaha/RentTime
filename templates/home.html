@@ -40,6 +40,33 @@
     </div>
     <!-- Here End Home page  -->
 
+    <br>
+
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <form method="get">
+            <div class="form-group">
+                <span style="border: 1px solid #ddd;
+                      padding: 10px;
+                      cursor: pointer;"> Area: {{myFilter.form.post_office}}</span>
+                &nbsp;
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <input name="address" placeholder="Street or area name.." type="text">
+                &nbsp;
+                <i class="fa fa-money" aria-hidden="true"></i> Rental Range:
+
+                <input style="background-color: beige; width: 80px;" name="rental__gte" name="quantity"
+                    placeholder="Min">
+
+                <i class="fa fa-minus"></i>
+                &nbsp;
+                <input style="background-color: beige; width: 80px;" name="rental__lte" name="quantity"
+                    placeholder="Max">
+
+                <input class="btn btn-outline-dark btn-sm" type="submit" value="Search" />
+            </div>
+
+        </form>
+    </div>
     <section id="all-seller">
         <div class="container">
             {% for rent in rents %}
@@ -54,66 +81,38 @@
                     </div>
 
 
-                    <p>{{rent.description}}</p>
-
+                    <p>{{rent.description|linebreaksbr}}</p>
+                    <h6>Rental: <strong style="color: rgb(255, 123, 0);">{{rent.rental}}</strong></h6>
                     <small>{{rent.availability_date}}</small>
 
                 </a>
-                <a href="/profile/{{rent.owner}}/">
-                    <p>{{rent.owner}}</p>
-                </a>
-                <a href="/rents/add-request/{{rent.id}}/" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Send Booking Request">
+                <span>Owner:
+                    <a href="/profile/{{rent.owner}}/">
+                        <b>{{rent.owner}}</b>
+                    </a>
+                </span>
+                <a href="/rents/add-request/{{rent.id}}/" class="btn btn-primary" data-toggle="tooltip"
+                    data-placement="bottom" title="Send Booking Request">
                     <i class="fa fa-plus"></i>
                 </a>
                 {% if rent.is_shared %}
-                <a href="/profile/{{rent.renter}}/" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Contact with {{rent.renter}} to Share this Place">
-                    {{rent.renter}} <span style="font-size: 80%;">is Looking for Roommate</span> 
+                <a href="/profile/{{rent.renter}}/" class="btn btn-warning" data-toggle="tooltip"
+                    data-placement="bottom" title="Contact with {{rent.renter}} to Share this Place">
+                    {{rent.renter}} <span style="font-size: 80%;">is Looking for Roommate</span>
                 </a>
                 {% else %}
-                <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-outline-dark " data-toggle="tooltip" data-placement="bottom" title="Look for Roommates">
+                <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-outline-dark " data-toggle="tooltip"
+                    data-placement="bottom" title="Look for Roommates">
                     <i class="fa fa-people-arrows"></i>
                 </a>
                 {% endif %}
             </div>
             {% endfor %}
             <!-- End of each seller Post -->
-
-
         </div>
     </section>
     <!-- End of Post section -->
 
-    <section id="pagination">
-        <div class="container">
-            <div class="numbers">
-                <div class="number-wrapper">
-                    <div class="number active">
-                        <p>1</p>
-                    </div>
-
-                    <div class="number">
-                        <p>2</p>
-                    </div>
-
-                    <div class="number">
-                        <p>3</p>
-                    </div>
-
-                    <div class="elipse">
-                        <P>...</P>
-                    </div>
-
-                    <div class="number">
-                        <p>7</p>
-                    </div>
-                </div>
-
-                <div class="next-button">
-                    <button><a href="#">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></button>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Here start Testimonials -->
     <section id="testimonials" class="testimonials">
@@ -124,11 +123,11 @@
                     <div class="head">
                         <div class="profile">
                             <div class="clientImage">
-                                <img src="images/cl-1.jpeg">
+                                <img src="{% static 'images/testimonial-1.jpg' %}">
                             </div>
 
                             <div class="info">
-                                <h4>Muhammad Rukon</h4>
+                                <h4>Nabil Hasan</h4>
                                 <cite>Dhaka, Bangladesh.</cite>
                             </div>
                         </div>
@@ -150,7 +149,7 @@
                     <div class="head">
                         <div class="profile">
                             <div class="clientImage">
-                                <img src="images/cl-2.jpg">
+                                <img src="{% static 'images/testimonial-2.jpg' %}">
                             </div>
 
                             <div class="info">

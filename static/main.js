@@ -19,25 +19,20 @@ function settingsMenuToggle(){
 
 
 // Register
-const studnet = document.getElementById('student');
-const ownerII = document.getElementById('owner');
+
+
 const btn = document.getElementById('btn');
 const studentBtn = document.getElementById('studentBtn');
 const ownerBtn = document.getElementById('ownerBtn');
 const signupText = document.getElementById('signup-text');
 
 const owner = () =>{
-  studnet.style.left = '-100%'
-  ownerII.style.left = '8%'
   btn.style.left = '50%'
   ownerBtn.style.color = 'white'
   studentBtn.style.color = '#2f3a4a'
   signupText.innerHTML = "Owner Register"
-
 }
 const student = () =>{
-  studnet.style.left = '8%'
-  ownerII.style.left = '100%'
   btn.style.left = '0%'
   studentBtn.style.color = 'white'
   ownerBtn.style.color = '#2f3a4a'

@@ -1,210 +1,255 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>rent-time - aboutpage</title>
-        
-        <!-- Googler Font Link  -->
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
-    
-        <!-- Font Awesome CDN Link -->
-        <script src="https://kit.fontawesome.com/ddb312c79b.js" crossorigin="anonymous"></script>
-    
-        <!-- CSS Stylesheet Link -->
-        <link rel="stylesheet" href="style.css">
-    </head>
-<body>
-    <header>
-        <nav>
-            <div class="container">
-                <a href="index.html"><h3>RentTime</h3></a>
-                <!-- <img src="#" alt="Logo of Rent Time"> -->
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %} Rent Update {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
 
-                <div id="search-bar-for-responsive">
-                    <input type="text" name="" id="responive-searchbar" placeholder="Search share accommod..."> <i class="fa fa-search" aria-hidden="true"></i>
-                </div>
-    
-                <div class="profile-icon" onclick="settingsMenuToggle()">
-                    <img src="images/man1.jpg" alt="Avater">
-                </div>
-                
-                <!-- Setting Menu -->
-                <div class="setting-menu">
+<main>
+    <div id="dash-board">
 
-                    <div class="setting-menu-inner">
-                        <div class="menu-items">
-                            <div class="each-item profile-shortcut">
-                                <img src="images/man1.jpg" alt="avater">
-                                <p>Profile</p>
-                            </div>
-                            <div class="each-item">
-                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                <p>My Bookings</p>
-                            </div>
-                            <div class="each-item">
-                                <i class="fa fa-list-ul" aria-hidden="true"></i>
-                                <p>My Listing</p>
-                            </div>
-                            <div class="each-item">
-                                <i class="fa fa-sliders" aria-hidden="true"></i>
-                                <p><a href="settings.html">Settings</a></p>
-                            </div>
-                            <div class="each-item">
-                                <i class="fa fa-camera-retro" aria-hidden="true"></i>
-                                <p><a href="blog-page.html">Blogs</a></p>
-                            </div>
-                            <div class="each-item">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                <p><a href="about.html">About Us</a></p>
-                            </div>
-                        </div>
 
-                        <div class="log-out">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i>
-                            <p>Sign out</p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Responsive Nav Bar -->
-                <div class="responsive-navbar">
-                    <button id="nav-bar-open"><i class="fa fa-bars" aria-hidden="true"></i></button>
-                    <button id="nav-bar-close"><i class="fa fa-times" aria-hidden="true"></i></button>
-                </div>
-
-            </div>
-        </nav>
-    </header>
-    <!-- End Of Header  -->
-    <main>
-        <div id="dash-board">          
-            <div class="upper-navigation">
-                <div onclick="goToCollectPeremeter()" class="each-content-box">
-                    <p>Create a listing for a potential <br>roommate</p>
-                </div>
-                
-                <div onclick="goToCollectPeremeter()" class="each-content-box">
-                    <p>Create a listing for a potential <br> roommate</p>
-                </div>
-
-                <div class="each-content-box">
-                    <p>Create a listing for post ads</p>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="left-side">
-                    <div class="profile">
-                        <img src="images/man1.jpg" alt="Picture of user">
-
-                        <p>Accounts with connected profiles are more likely to find roommates!</p>
-                        <p><a href="#">Connect LinkedIn Profile</a></p>
-                    </div>
-                </div>
-
-                <div class="right-side">
-                    <div class="about-user">
-                        <div>
-                            <p><i class="fa fa-user" aria-hidden="true"></i></p>
-                            <h4>ABOUT IMTIAZ</h4>
-                        </div>
-
-                        <div>
-                            <p><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</a></p>
-                        </div>
-                    </div>
-
-                    <div class="listing-on-rent">
-                        <div>
-                            <p><i class="fa fa-list-ul" aria-hidden="true"></i></p>
-                            <h4>LISTINGS ON RENT</h4>
-                        </div>
-
-                        <img src="images/listing.svg" alt="Picture of listing">
-
-                        <button><a href="#">Create a list</a></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <!-- Here start footer -->
-    <footer id="footer">
         <div class="container">
-            <div class="intro">
-                    <h4 class="footer-title"><a href="#" class="logo">Rent Time</a></h4>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                    <a href="#">Read more <span class="fa fa-chevron-right" style="font-size: 11px;"></span></a>
-                </div>
+            <div class="left-side">
+                <div class="profile">
+                    <img src="images/man1.jpg" alt="Picture of user">
 
-                <div class="Services">
-                    <h4 class="footer-title">Services</h4>
-                    <ul>
-                        <li><a href="#">Map Direction</a></li>
-                        <li><a href="#">Accomodation Services</a></li>
-                        <li><a href="#">Great Experience</a></li>
-                        <li><a href="#">Perfect central location</a></li>
-                    </ul>
+                    <p>Accounts with connected profiles are more likely to find roommates!</p>
+                    <p><a href="#">Connect LinkedIn Profile</a></p>
                 </div>
+            </div>
 
-                <div class="tag-cloud">
-                    <h4 class="footer-title">Tags</h4>
-                    <div class="short-link">
-                        <a href="#" class="tag-cloud-link">apartment</a>
-                        <a href="#" class="tag-cloud-link">home</a>
-                        <a href="#" class="tag-cloud-link">rental</a>
-                        <a href="#" class="tag-cloud-link">rent</a>
-                        <a href="#" class="tag-cloud-link">house</a>
-                        <a href="#" class="tag-cloud-link">place</a>
-                        <a href="#" class="tag-cloud-link">sleep</a>
-                    </div>
-                </div>
-
-                <div class="subscribe">
-                    <div class="subscribeWrapper">
-                        <h4 class="footer-title">Subcribe</h4>
-                        <form action="#" class="subscribe-form">
-                            <input type="email" class="form-control rounded-left" placeholder="Enter email address" required>
-                            <button type="submit"><i class="fa fa-paper-plane"></i></button>
-                        </form>
+            <div class="right-side">
+                <div class="about-user">
+                    <div>
+                        <p><i class="fa fa-user" aria-hidden="true"></i></p>
+                        <h4>ABOUT IMTIAZ</h4>
                     </div>
 
-                    <div id="social-links">
-                        <h4>Follow us</h4>
-                        <ul>
-                            <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                            <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                            <li><a href="#"><span class="fa fa-instagram"></span></a></li>
-                        </ul>
+                    <div>
+                        <p><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</a></p>
                     </div>
-                </div>    
-        </div>
-
-        <div class="container hrtag">
-            <hr>
-        </div>
-
-        <div class="copyright-message-and-privacy">
-            <div class="container copyright-box">
-                <div class="copyright-message">
-                    <p>
-                        Copyright &copy; 2022 All rights reserved | Developed by Mariam Maherin Fariha
-                    </p>
                 </div>
-                <div class="terms-privacy">
-                    <p>
-                        <a href="privacy.html">Terms</a>
-                        <a href="privacy.html">Privacy</a>
-                    </p>
+                <!-- Sell Info -->
+                <div class="sell-info">
+                    <div class="name-request">
+                        <h4>Imtiaz Hossain</h4>
+                    </div>
+                    <p class="online-status">Online: <span>Over 5 days</span></p>
+
+                    <hr>
+
+                    <div class="each-info">
+                        <p class="name">Date Available</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">7 Aug 2022 for 2 to 3 months</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Age and gender</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">One person. Male (str). 25 to 30 years.</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Smoker</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">Non-smoker</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Main interests</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">Travel</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Student</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">Full Time</p>
+                    </div>
+                    <!-- Each info -->
+                </div>
+
+                <!-- Sell Info -->
+                <div class="sell-info">
+                    <div class="about-info">
+                        <p class="about-person">Important Personal Qualities</p>
+                        <p class="condition">Honest and Good Sense of Humor</p>
+                    </div>
+                    <!-- Each info -->
+                </div>
+
+                <!-- Sell Info -->
+                <div class="sell-info">
+                    <div class="about-info">
+                        <p class="about-person">Food Sharing and Furniture</p>
+                        <p class="condition">I prefer not to share my foods. I like to have a furnished house.</p>
+                    </div>
+                    <!-- Each info -->
+                </div>
+
+                <!-- Sell Info Preferance Title -->
+                <div class="search-preferance">
+                    <h4>SEARCH PREFERENCES</h4>
+                </div>
+                <!-- Sell Info -->
+                <div class="sell-info">
+                    <h5>Home Preferance</h5>
+
+                    <div class="each-info">
+                        <p class="name">Rent Budget</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">৳ 7000 per month</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Bedroom Type</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">Private Bedroom</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Balcony</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">Attach balcony preferable</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Home Sizes</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">Any home size</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Bedroom Sizes</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">Single</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Bedroom Furniture</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">Furnished</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Bathroom Facilities</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">Shared Bathroom Okay</p>
+                    </div>
+                    <!-- Each info -->
+                </div>
+
+
+                <!-- Sell Info -->
+                <div class="sell-info">
+                    <h5>Flatmate Preferences</h5>
+
+                    <div class="each-info">
+                        <p class="name">Gender & Sexuality</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">Males (student)</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Age Group</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">21 to 30 yrs</p>
+                    </div>
+                    <!-- Each info -->
+
+                    <div class="each-info">
+                        <p class="name">Smoking at Home</p>
+                        <p class="semi-colon">:</p>
+                        <p class="condition">Non-smokers - Outdoors okay</p>
+                    </div>
+                    <!-- Each info -->
+                </div>
+
+
+                <!-- Sell Info -->
+                <div class="sell-info">
+                    <h5>Location Preferences</h5>
+
+                    <div class="all-location">
+                        <div class="location">
+                            <p> <span></span> Mohammadpur</p>
+                        </div>
+                        <!-- Each Location -->
+
+                        <div class="location">
+                            <p> <span></span> Shakar</p>
+                        </div>
+                        <!-- Each Location -->
+
+                        <div class="location">
+                            <p> <span></span> Rayer Bazaar</p>
+                        </div>
+                        <!-- Each Location -->
+
+                        <div class="location">
+                            <p> <span></span> Dhanmondi</p>
+                        </div>
+                        <!-- Each Location -->
+
+                        <div class="location">
+                            <p> <span></span> Zigatola</p>
+                        </div>
+                        <!-- Each Location -->
+
+                        <div class="location">
+                            <p> <span></span> Tollabag</p>
+                        </div>
+                        <!-- Each Location -->
+
+                        <div class="location">
+                            <p> <span></span> Kolabagan</p>
+                        </div>
+                        <!-- Each Location -->
+
+                        <div class="location">
+                            <p> <span></span> shukrabad</p>
+                        </div>
+                        <!-- Each Location -->
+
+                        <div class="location">
+                            <p> <span></span> Tallioffice</p>
+                        </div>
+                        <!-- Each Location -->
+
+                        <div class="location">
+                            <p> <span></span> Geelong</p>
+                        </div>
+                        <!-- Each Location -->
+
+                        <div class="location">
+                            <p> <span></span> kaderabudhousing</p>
+                        </div>
+                        <!-- Each Location -->
+                        <div class="location">
+                            <p> <span></span> Poolpar</p>
+                        </div>
+                        <!-- Each Location -->
+
+                        <div class="location">
+                            <p> <span></span> Niltalamondir</p>
+                        </div>
+                        <!-- Each Location -->
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
-
-    <!-- Main script file -->
-    <script src="main.js"></script>
-</body>
-</html>
+    </div>
+</main>
+{% endblock %}

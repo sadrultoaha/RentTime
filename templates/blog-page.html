@@ -6,6 +6,7 @@
 
 
 <main>
+    <h3 class="position-absolute end-50">Blog Posts</h3>
     {% if user.is_owner or user.is_superuser %}
     <div class="position-absolute end-0">
         <a href="/blogs/new/"> <button style="border-radius: 50px; " type="button"
@@ -16,14 +17,16 @@
 
         <div class="container">
             {% for blog in blogs %}
-            <div class="single-row">
+            {% if forloop.counter|divisibleby:2 %} <div class="double-row"> {% else %} <div class="single-row"> {% endif %}
+            
 
                 <div class="img-details">
-                    <img style="" src="{{blog.photo.url}}" width="350" height="450">
+                    {% if forloop.counter|divisibleby:2 %} <img src="{{blog.photo.url}}" width="350" height="360"> {% else %} <img src="{{blog.photo.url}}" width="350" height="450"> {% endif %}
+                    
                     <div class="details">
-                        <h5>{{blog.title}}</h5>
+                        <h5><b>{{blog.title}}</b></h5>
                         <small>{{blog.created_date}}</small>
-                        <p><a href="/blogs/details/{{blog.id}}/">See more</a></p>
+                        <p><a href="/blogs/details/{{blog.id}}/" type="button" class="btn btn-outline-primary">See more</a></p>
                     </div>
                 </div>
 

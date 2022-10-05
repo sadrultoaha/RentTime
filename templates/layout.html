@@ -74,7 +74,7 @@
                     <div class="setting-menu-inner">
                         <div class="menu-items">
                             <div class="each-item profile-shortcut">
-                                <img src="{{user.photo.url}}" alt="avater">
+                                <img src="{{user.photo.url}}" alt="Avater">
                                 <p><a href="settings.html">{{user}}</a></p>
                             </div>
                             <div class="each-item">
@@ -95,22 +95,19 @@
                             </div>
                             <div class="each-item">
                                 <i class="fa fa-sliders" aria-hidden="true"></i>
-                                <p><a href="settings.html">Settings</a></p>
+                                <p><a href="/profile_edit/">Settings</a></p>
                             </div>
                             <div class="each-item">
                                 <i class="fa fa-camera-retro" aria-hidden="true"></i>
-                                <p><a href="blog-page.html">Blogs</a></p>
+                                <p><a href="/myblogs/">Blogs</a></p>
                             </div>
-                            <div class="each-item">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                <p><a href="about.html">About Us</a></p>
+                            <div class="log-out">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                <a href="{% url 'logout' %}">LogOut</a>
                             </div>
                         </div>
 
-                        <div class="log-out">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i>
-                            <a href="{% url 'logout' %}">LogOut</a>
-                        </div>
+                        
                     </div>
 
                 </div>
@@ -148,7 +145,7 @@
             <div class="intro">
                 <h4 class="footer-title"><a href="#" class="logo">Rent Time</a></h4>
                 <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <a href="about.html">Read more <span class="fa fa-chevron-right" style="font-size: 11px;"></span></a>
+                <a href="/about/">Read more <span class="fa fa-chevron-right" style="font-size: 11px;"></span></a>
             </div>
 
             <div class="Services">
@@ -208,8 +205,8 @@
                 </div>
                 <div class="terms-privacy">
                     <p>
-                        <a href="privacy.html">Terms</a>
-                        <a href="privacy.html">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Privacy</a>
                     </p>
                 </div>
             </div>

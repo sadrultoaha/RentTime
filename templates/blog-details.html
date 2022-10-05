@@ -9,7 +9,7 @@
         <div class="container">
             <h3>{{blog.title}}</h3>
             <small>Published on {{blog.created_date}}</small>
-            
+
             <img src="{{blog.photo.url}}" width="1100" height="550">
 
             <div style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -17,8 +17,17 @@
             font-size: 14px;
             font-weight: 300;
             letter-spacing: 1px;
-            line-height: 200%;">{{blog.description}}</div>
-           
+            line-height: 200%;">{{blog.description|linebreaksbr}}</div>
+
+            {% if user.is_owner or user.is_superuser %}
+            <div class="position-absolute end-0">
+                <a href="/blogs/details/{{blog.id}}/edit/"> <button type="button" class="btn btn-primary" title="Edit"><i
+                            class="fa fa-pen"></i></button></a>
+                <a href="/blogs/delete/{{blog.id}}/"> <button type="button" class="btn btn-danger" title="Delete">
+                    <b>x</b></button></a>
+            </div>
+            {% endif %}
+
         </div>
     </section>
 </main>

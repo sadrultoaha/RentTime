@@ -23,12 +23,10 @@ from collections import OrderedDict
 from ..forms import *
 from ..models import *
 
-
-
 class RentersPassword(PasswordContextMixin,FormView):
     form_class = PasswordChangeForm
-    success_url = ('/posts')
-    template_name = 'Password.html'
+    success_url = ('/')
+    template_name = 'password-edit.html'
     title = ('Password change')
 
     def dispatch(self, *args, **kwargs):
@@ -58,7 +56,7 @@ def RentersProfile(request, user):
         return render(request,'profile.html',{'user': user})
         
 
-def RentersProfile_edit(request,user):
+def RentersProfile_edit(request):
     user = request.user
     if request.method == 'POST':
 
@@ -68,14 +66,14 @@ def RentersProfile_edit(request,user):
             return redirect('RentersProfile', user=user)
     else:
         form = RenterChangeForm(instance=user)
-    context = {'form': form}
+    context = {'user':user,'form': form}
     return render(request, 'profile_edit.html', context)
 
 
 class RenterSignUpView(CreateView):
     model = User
     form_class = RenterSignUpForm
-    template_name = 'signup_form.html'
+    template_name = 'renter_signup_form.html'
 
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'renter'

@@ -24,16 +24,16 @@ urlpatterns = [
     path('approvals/', rents.approved_bookings, name='approved_bookings'),
 
     path('blogs/', rentapp.blogs, name='blogs'),
+    path('myblogs/', rentapp.my_blogs, name='my_blogs'),
     path('blogs/new/', rentapp.blog_new, name='blogs_new'),
     path('blogs/details/<int:pk>/', rentapp.blog_details, name='blog_details'),
+    path('blogs/delete/<int:pk>/', rentapp.blog_delete, name='blog_delete'),
     path('blogs/details/<int:pk>/edit/', rentapp.blog_edit, name='blog_edit'),
 
-    #path('update/',renters.update),
-    #path('programmers/',renters.Programmers,name='Programmers'),
 
-    #path('profile/<user>/',renters.ProgrammersProfile, name='ProgrammersProfile'),
-    #path('<user>/profile_edit/',renters.ProgrammersProfile_edit, name='ProgrammersProfile_edit'),
-    #path('<user>/profile_edit/Password/',renters.ProgrammersPassword.as_view(), name='ProgrammersPassword'),
+    path('profile/<user>/',renters.RentersProfile, name='renters_profile'),
+    path('profile_edit/',renters.RentersProfile_edit, name='renters_profile_edit'),
+    path('profile_edit/password/',renters.RentersPassword.as_view(), name='renters_password'),
 
     #path('owners/',renters.owner,name='owners'),
     #path('owner/profile/<user>/',owners.ownersProfile, name='ownersProfile'),

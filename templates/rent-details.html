@@ -2,27 +2,34 @@
 {% load static %}
 {% block title %}rents{% endblock %}
 
- {% block content %}
+{% block content %}
 
-		<div class="blog-con box-header">
-			<br>
-			<a href="./edit/" style="float: right; margin: 0px;">edit</a>
+<div class="blog-con box-header">
+	<br>
+	{% if user.is_owner or user.is_superuser %}
+	<div class="position-absolute end-0">
+		<a href="/rents/details/{{rent.id}}/edit/"> <button type="button" class="btn btn-primary" title="Edit"><i
+					class="fa fa-pen"></i></button></a>
+		<a href="/rents/delete/{{rent.id}}/"> <button type="button" class="btn btn-danger" title="Delete">
+			<b>x</b></button></a>
+	</div>
+	{% endif %}
 
-			<a href="/rents" ><button class="btn" style="padding-top:0px;padding-left: 2px; margin: 0px; width: 20px;height: 18px;"><i class="glyphicon glyphicon-arrow-left"></i></button></a>
+	<a href="/rents"><button class="btn"
+			style="padding-top:0px;padding-left: 2px; margin: 0px; width: 20px;height: 18px;"><i
+				class="glyphicon glyphicon-arrow-left"></i></button></a>
 
-			<h3 class="blog-rent-title" style="font-family:'Lobster';font-size: 30px;">{{rent.title}}</h3>
-			<img aria-hidden="true" style="border-radius: 30%; width: 30%;" src="{{rent.photo.url}}" >
-			<br>
-			<b style="color:red;"><a href="/profile/{{rent.owner}}">{{rent.owner}}</a></b>&nbsp;&nbsp;<small>{{rent.created_date}}</small>
-			<hr style="border: 1px solid #dddddd; margin: 0px;" >
-				<br>
-				<p>
-					<font style="font-size: 20px">{{rent.description|linebreaksbr}}</font>
-				</p>
-				
-			
-			<br>
-		</div>
-		<br>
-		<br><br><br>
+	<h3 class="blog-rent-title" style="font-family:'Lobster';font-size: 30px;">{{rent.title}}</h3>
+	<img aria-hidden="true" style="border-radius: 30%; width: 30%;" src="{{rent.photo.url}}">
+	<br>
+	<b style="color:red;"><a
+			href="/profile/{{rent.owner}}">{{rent.owner}}</a></b>&nbsp;&nbsp;<small>{{rent.created_date}}</small>
+	<hr style="border: 1px solid #dddddd; margin: 0px;">
+	<br>
+	<p style="font-size: 20px">{{rent.description|linebreaksbr}}</p>
+	<br>
+	<h4>Rental: <strong style="color: rgb(255, 123, 0);">{{rent.rental}}</strong></h4>
+</div>
+<br>
+<br><br><br>
 {% endblock %}

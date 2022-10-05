@@ -4,6 +4,7 @@ from numpy import append
 from app.views import owners
 from ..models import *
 from ..forms import *
+from ..filters import *
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
@@ -13,14 +14,21 @@ def index(request, option):
         rents = Rent.objects.filter(is_shared=True, is_deleted=False, is_booked=False).order_by('-created_date')
     else:
         rents = Rent.objects.filter(is_shared=False, is_deleted=False, is_booked=False).order_by('-created_date')
-    return render(request, 'index.html', {'rents': rents})
+
+    myFilter = RentFilter(request.GET, queryset=rents)
+    rents = myFilter.qs
+    context = {
+        'myFilter': myFilter,
+        'rents': rents,
+    }
+    return render(request, 'index.html', context)
 
 def details(request, pk):
     rent = get_object_or_404(Rent, pk=pk)
     return render(request, 'rent-details.html', {'rent': rent})
 
 def delete(request, pk):
-    rent = get_object_or_404(Rent, pk=pk)
+    rent = get_object_or_404(Rent, pk=pk).delete()
     return HttpResponseRedirect('/rents/all/')
 
 def rent_new(request):
@@ -31,7 +39,7 @@ def rent_new(request):
 
             rent.owner = request.user
             rent.save()
-            return redirect('details', pk=rent.pk)
+            return redirect('rent_details', pk=rent.pk)
     else:
         form = RentForm()
     return render(request, 'rent-edit.html', {'form': form, 'req':request})
@@ -45,7 +53,7 @@ def rent_edit(request, pk):
             rent.owner = request.user
             rent.modified_date = timezone.now()
             rent.save()
-            return redirect('details', pk=rent.pk)
+            return redirect('rent_details', pk=rent.pk)
     else:
         form = RentForm(instance=rent)
     return render(request, 'rent-edit.html', {'form': form, 'req':request})
@@ -62,7 +70,6 @@ def add_rent_request(request, pk):
 
 def delete_rent_request(request, pk):
     requested_item = get_object_or_404(Request, pk=pk)
-    #requested_item.delete()
     requested_item.is_deleted = True
     requested_item.modified_date = timezone.now()
     requested_item.save()
@@ -103,8 +110,8 @@ def requested_rents(request):
     return render(request, 'requests.html', {'requests': requests})
 
 def added_rents(request):
-    rents = Rent.objects.filter( owner = request.user, is_deleted=False, is_booked=False).order_by('-created_date')
-    return render(request, 'index.html', {'rents': rents})
+    rents = Rent.objects.filter( owner = request.user, is_deleted=False).order_by('-created_date')
+    return render(request, 'listings.html', {'rents': rents})
 
 def approved_bookings(request):
     requests = Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True)), renter = request.user, is_accepted = True)

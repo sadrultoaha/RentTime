@@ -13,13 +13,13 @@
                 <h4 id="signup-text">Student Register</h4>
 
                 <div class="button-box">
-                    <div id="btn"></div>
-                    <a type="button" onclick="student()" id="studentBtn" class="toggle-btn"> Student </a>
-                    <a type="button" onclick="owner()" id="ownerBtn" class="toggle-btn"> Owner </a>
+                    <div style="left: 0%;" id="btn"></div>
+                    <a style="color: white;" href="/signup/renter/" type="button" id="studentBtn" class="toggle-btn">
+                        Student </a>
+                    <a style="color: #2f3a4a;" href="/signup/owner/" type="button" id="ownerBtn" class="toggle-btn">
+                        Owner </a>
                 </div>
 
-
-                <!-- For student -->
                 <form method="post" id="student" class="input-group" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="input-field">
@@ -41,13 +41,13 @@
                                 placeholder="Last Name" />
                         </div>
                     </div>
-        
+
 
                     <div class="input-field">
                         <i class="fa fa-envelope-o" aria-hidden="true"></i>
                         <input class="" type="email" name="email" required="" maxlength="64" placeholder="Email" />
                     </div>
-             
+
 
                     <div class="input-field">
                         <i class="fa fa-lock" aria-hidden="true"></i>
@@ -60,59 +60,23 @@
                         <i class="fa fa-lock" aria-hidden="true"></i>
                         <input class="" type="password" name="password2" id="{{form.id_password_repeat}}" required=""
                             maxlength="64" placeholder="Confirm password" />
-                    </div> 
+                    </div>
 
                     <div class="input-field">
                         {{form.photo}}
                     </div>
 
-                    <button id="register-btn" type="submit">Submit</button>
+                    {% if form.errors %}
+                    <h5 style="color:purple"> This fields are required :</h5>
+                    {% for error in form.errors %}
+                    <pre style="color: red ; background-color:#e0e0e0;">{{ error }}</pre>
+                    {% endfor %}
+                    {% endif %}
+
+                    <button class="btn btn-sm btn-dark" id="register-btn" type="submit">Submit</button>
 
                     <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
                 </form>
-
-                <!-- For student -->
-                <!--form method="post" id="owner" class="input-group">
-                    {% csrf_token %}
-                    <div class="name-field">
-                        <div>
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <input class="" type="text" name="username" required="" maxlength="64"
-                                placeholder="User Name" />
-                        </div>
-
-                        <div>
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <input class="" type="text" name="username" required="" maxlength="64"
-                                placeholder="User Name" />
-                        </div>
-                    </div>
-
-
-                    <div class="input-field">
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        <input class="" type="email" name="email" required="" maxlength="64"
-                            placeholder="Email Address" />
-                    </div>
-
-
-                    <div class="input-field">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        <input class="" type="password" name="password1" id="exampleInputPassword1" required=""
-                            maxlength="64" placeholder="Password" />
-                    </div>
-
-
-                    <div class="input-field">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        <input class="" type="password" name="password2" id="{{form.id_password_repeat}}" required=""
-                            maxlength="64" placeholder="Confirm password" />
-                    </div>
-
-                    <button id="register-btn"><a href="owner-regi-multi-page.html">Submit</a></button>
-
-                    <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
-                </form-->
             </div>
 
             <img src="{% static 'images/login.svg' %}" alt="Picture of Login Picture">

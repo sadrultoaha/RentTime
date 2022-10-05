@@ -18,7 +18,7 @@ from django.contrib.auth.views import PasswordContextMixin
 from django.views.generic.edit import FormView
 from django.contrib.auth import update_session_auth_hash
 
-class TeachersPassword(PasswordContextMixin,FormView):
+class OwnersPassword(PasswordContextMixin,FormView):
     form_class = PasswordChangeForm
     success_url = ('/posts')
     template_name = 'Password.html'
@@ -39,10 +39,10 @@ class TeachersPassword(PasswordContextMixin,FormView):
         update_session_auth_hash(self.request, form.user)
         return super().form_valid(form)
 
-def TeachersProfile(request,user):
+def OwnersProfile(request,user):
     return redirect('ProgrammersProfile',user=user)
 
-def TeachersProfile_edit(request,user):
+def OwnersProfile_edit(request,user):
     user = request.user
     if request.method == 'POST':
 
@@ -55,14 +55,14 @@ def TeachersProfile_edit(request,user):
     context = {'form': form}
     return render(request, 'profile_edit.html', context)
 
-def teacher(request):
+def Owner(request):
     posts = User.objects.filter().order_by('username').exclude(student_Id__isnull=False)    
-    return render(request, 'teachers.html', {'posts': posts})
+    return render(request, 'Owners.html', {'posts': posts})
 
-class TeacherSignUpView(CreateView):
+class OwnerSignUpView(CreateView):
     model = User
     form_class = OwnerSignUpForm
-    template_name = 'signup_form.html'
+    template_name = 'owner_signup_form.html'
 
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'owner'

@@ -233,11 +233,13 @@ button a:hover{
     color: #000;
 }
 button#register-btn{
-    background: transparent;
     position: relative;
+    left:-30px;
 }
 #login-link{
     position: relative;
+    left:-30px;
+
 }
 button#register-btn a:hover{
     text-decoration: none;
@@ -759,7 +761,7 @@ h4.footer-title, h4.footer-title a {
 /* Regitration from design Start*/
 #register-page .container .form-box{
     position: relative;
-    height: auto;
+    height: 800px;
     overflow: hidden;
 }
 #register-page .container .form-box .input-group{
@@ -796,12 +798,12 @@ h4.footer-title, h4.footer-title a {
     transition: all 0.3s ease;
 }
 #studentBtn{
-    color: #fff;
+
     left:-10px;
     position: relative;
 }
 #ownerBtn{
-    color: black;
+
     left: 40px;
     position: relative;
 
@@ -915,7 +917,7 @@ form#owner {
 #blogs .container .single-row .img-details .details p a {
     color: #fff;
     position: relative;
-    left: -75px;
+    left: -110px;
     transition: 0.3s;
 }
 #blogs .container .single-row .img-details .details:hover p a,

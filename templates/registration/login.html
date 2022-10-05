@@ -1,42 +1,50 @@
 {% extends 'layout.html' %}
- {% load static %}
+{% load static %}
 {% block title %}DashBoard{% endblock %}
 {% load crispy_forms_tags %}
 
 {% block content %}
 
-    <!-- Here strat main part -->
-    <main>
-        <div id="login-page">
-            <div class="container">
-            
-                <form method="post" class="form-container">
-                    {% csrf_token %}
-                    <h4>Member Login</h4>
+<!-- Here strat main part -->
+<main>
+    <div id="login-page">
+        <div class="container">
 
-                    <div class="input-field">
-                        <i class="fa fa-user" aria-hidden="true"></i>
+            <form method="post" class="form-container">
+                {% csrf_token %}
+                <h4>Member Login</h4>
 
-                        {{ form.username | as_crispy_field }}
+                <div class="input-field">
+                    <i class="fa fa-user" aria-hidden="true"></i>
 
-                    </div>
-                    <!-- Each Input Field -->
+                    {{ form.username | as_crispy_field }}
 
-                    <div class="input-field">
-                        <i class="fa fa-lock" aria-hidden="true"></i> 
-                        {{ form.password | as_crispy_field }}
-                    </div>
-                    <!-- Each Input Field -->
+                </div>
+                <!-- Each Input Field -->
 
-                    <button id="login-btn" type="submit">LOGIN</button>
-                    <p><a href="#">Forgot Username</a> / <a href="#">Password?</a></p>
-                    <p id="sign-link">Don't have an Account? <a href="/signup/renter/">Sign Up</a></p>
-                </form>
+                <div class="input-field">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                    {{ form.password | as_crispy_field }}
+                </div>
+                <!-- Each Input Field -->
 
-                <img src="{% static 'images/login.svg' %}" alt="Picture of Login">
-            </div>
+                {% if form.errors %}
+                <h5 style="color:purple"> This fields are required :</h5>
+                {% for error in form.errors %}
+                <pre style="color: red ; background-color:#e0e0e0;">{{ error }}</pre>
+                {% endfor %}
+                {% endif %}
+
+
+                <button id="login-btn" type="submit">LOGIN</button>
+                <p><a href="#">Forgot Username</a> / <a href="#">Password?</a></p>
+                <p id="sign-link">Don't have an Account? <a href="/signup/renter/">Sign Up</a></p>
+            </form>
+
+            <img src="{% static 'images/login.svg' %}" alt="Picture of Login">
         </div>
-    </main>
-    <!-- Here End main part -->
+    </div>
+</main>
+<!-- Here End main part -->
 
-   {% endblock %}
+{% endblock %}

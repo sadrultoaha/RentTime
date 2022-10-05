@@ -18,29 +18,37 @@
                     <p>{{rent.address}}, {{rent.post_office}} </p>
                 </div>
 
-                <p>{{rent.description}}</p>
-
+                <p>{{rent.description|linebreaksbr}}</p>
+                <h6>Rental: <strong style="color: rgb(255, 123, 0);">{{rent.rental}}</strong></h6>
                 <small>{{rent.availability_date}}</small>
 
             </a>
-            <a href="/profile/{{rent.owner}}/">
-                <p>{{rent.owner}}</p>
-            </a>
-            <a href="/rents/add-request/{{rent.id}}/" class="btn btn-primary" data-toggle="tooltip"
-                data-placement="bottom" title="Send Booking Request">
-                <i class="fa fa-plus"></i>
-            </a>
-            {% if rent.is_shared %}
-            <a href="/profile/{{rent.renter}}/" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"
-                title="Contact with {{rent.renter}} to Share this Place">
-                {{rent.renter}} <span style="font-size: 80%;">is Looking for Roommate</span> 
+
+            {% if rent.is_booked %}
+            <a href="/profile/{{rent.renter}}/" class="btn btn-success" data-toggle="tooltip" data-placement="bottom"
+                title="Visit {{rent.renter}}'s Profile">
+                Booked
             </a>
             {% else %}
-            <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-outline-dark" data-toggle="tooltip"
-                data-placement="bottom" title="Look for Roommates">
-                <i class="fa fa-people-arrows"></i>
+            <a href="/profile/{{rent.renter}}/" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom">
+
+                Pending
             </a>
             {% endif %}
+
+            {% if rent.is_shared %}
+            <a href="/profile/{{rent.renter}}/" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom"
+                title="Visit {{rent.renter}}'s Profile">
+                Shared
+            </a>
+            {% else %}
+            <a href="/profile/{{rent.renter}}/" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom">
+
+                Not Shared
+            </a>
+            {% endif %}
+
+            
         </div>
         {% endfor %}
         <!-- End of each seller Post -->
