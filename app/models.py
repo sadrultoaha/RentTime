@@ -3,7 +3,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from datetime import datetime
 from django.utils import timezone
-
+from PIL import Image
+from matplotlib.pyplot import title
+from traitlets import default
 
 class Division(models.Model):
     code = models.CharField(max_length = 50)
@@ -48,11 +50,23 @@ class PostOffice(models.Model):
     def __str__(self):
         return self.name
 
+
 class User(AbstractUser):
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other')
+    )
     is_renter = models.BooleanField(default = False)
     is_owner = models.BooleanField(default = False)
-    nid = models.CharField(max_length=13, null = True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='')
+    nid = models.CharField(max_length=13, null=True)
     mobile_No = models.CharField(max_length=11, null = True)
+    affiliation_name = models.CharField(max_length=20, null = True)
+    affiliation_id = models.CharField(max_length=20, null = True)
+    dob = models.DateTimeField(null = True)
+    present_address = models.CharField(max_length=255, null=True)
+    photo = models.ImageField(upload_to='images/', default='images/user.jpg', blank=True)
 
     def __str__(self):
         return self.username
@@ -64,13 +78,22 @@ class Rent(models.Model):
     address = models.CharField(max_length = 255, null=False)
     description = models.TextField()
     availability_date = models.DateTimeField(null = False)
+    rental = models.IntegerField(null = False, default=0)
     is_booked = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
     is_shared = models.BooleanField(default = False)
     created_date = models.DateTimeField(default=timezone.now)
-    
+    modified_date = models.DateTimeField(null = True)
+    photo = models.ImageField(upload_to='images/', default='images/home.jpg', blank=True)
+
     def __str__(self):
-        return self.address
+        return str(self.id)
+
+    def save(self):
+        super().save() 
+        img = Image.open(self.photo.path)
+        new_img = img.resize((300, 300), resample=Image.ANTIALIAS)
+        new_img.save(self.photo.path)
 
 class Request(models.Model):
     flat = models.ForeignKey('Rent', related_name='requested_rent', on_delete=models.CASCADE)
@@ -79,7 +102,27 @@ class Request(models.Model):
     is_accepted = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
     created_date = models.DateTimeField(default=timezone.now)
+    modified_date = models.DateField(null = True)
 
     def __str__(self):
         return str(self.id)
+
+
+class Blog(models.Model):
+    author = models.ForeignKey('User', related_name='blog_author', on_delete=models.CASCADE)
+    title = models.CharField(max_length=255, null=False)
+    description = models.TextField()
+    is_deleted = models.BooleanField(default=False)
+    created_date = models.DateTimeField(default=timezone.now)
+    modified_date = models.DateTimeField(null = True)
+    photo = models.ImageField(upload_to='images/', default='images/home.jpg', blank=True)
+
+    def __str__(self):
+        return str(self.id)
+
+    # def save(self):
+    #     super().save() 
+    #     img = Image.open(self.photo.path)
+    #     new_img = img.resize((350, 450), resample=Image.ANTIALIAS)
+    #     new_img.save(self.photo.path)
 

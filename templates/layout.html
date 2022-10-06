@@ -1,54 +1,125 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}RentTime - Home page{% endblock %}</title>
 
+
     <!-- Google Material CDN Link -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
     <!-- Swiper JS Link -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
-    
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
     <!-- Googler Font Link  -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome CDN Link -->
     <script src="https://kit.fontawesome.com/ddb312c79b.js" crossorigin="anonymous"></script>
 
+
+
     <!-- CSS Stylesheet Link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
-</head>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+
+
 <body>
-    {% block nav %}<!--  ##########################    Block For Home Page Navbar  ##################################   -->
+    {% block nav %}
+    <!--  ##########################    Block For Home Page Navbar  ##################################   -->
     <header>
         <nav>
             <div class="container">
-                <a href="{% url 'home' %}"><h3>RentTime</h3></a>
+                <a href="{% url 'home' %}">
+                    <h3>RentTime</h3>
+                </a>
                 <!-- <img src="#home" alt="Logo of Rent Time"> -->
-                
+
                 <div id="search-bar-for-responsive">
-                    <input type="text" name="" id="responive-searchbar" placeholder="Search share accommod..."> <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="text" name="" id="responive-searchbar" placeholder="Search share accommod..."> <i
+                        class="fa fa-search" aria-hidden="true"></i>
                 </div>
-    
+
                 <ul id="nav-items">
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="/about/">About Us</a></li>
-                    <li><a href="blog-page.html">Blog</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="/blogs/">Blog</a></li>
 
-                    <!-- Dark Theme Button -->
-                    <div class="dark-and-light-theme">
-                        <a class="search-bar"><input type="text" ><i class="fa fa-search" aria-hidden="true"></i></a>
-                        <button class="dark"><i class="fa fa-moon-o" aria-hidden="true"></i></button>
-                        <button class="light"><i class="fa fa-sun-o" aria-hidden="true"></i></button>
-                    </div>
+
+                {% if user.is_authenticated %}
                 </ul>
-                
+
+                <!-- Setting Menu -->
+               
+                <div class="profile-icon" onclick="settingsMenuToggle()">
+                   
+                    <img src="{{user.photo.url}}" alt="Avater">
+                    <b style="color: white;">{{user}}</b>
+                </div>
+                <div class="setting-menu">
+
+                    <div class="setting-menu-inner">
+                        <div class="menu-items">
+                            <div class="each-item profile-shortcut">
+                                <img src="{{user.photo.url}}" alt="Avater">
+                                <p><a href="settings.html">{{user}}</a></p>
+                            </div>
+                            <div class="each-item">
+                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                {% if user.is_renter %}
+                                <p><a href="/requests/">My Requests</a></p>
+                                {% else %}
+                                <p><a href="/requests/">Requests</a></p>
+                                {% endif %}
+                            </div>
+                            <div class="each-item">
+                                <i class="fa fa-list-ul" aria-hidden="true"></i>
+                                {% if user.is_renter %}
+                                <p><a href="/approvals/">My Bookings</a></p>
+                                {% else %}
+                                <p><a href="/listings/">My Listings</a></p>
+                                {% endif %}
+                            </div>
+                            <div class="each-item">
+                                <i class="fa fa-sliders" aria-hidden="true"></i>
+                                <p><a href="/profile_edit/">Settings</a></p>
+                            </div>
+                            <div class="each-item">
+                                <i class="fa fa-camera-retro" aria-hidden="true"></i>
+                                <p><a href="/myblogs/">Blogs</a></p>
+                            </div>
+                            <div class="log-out">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                <a href="{% url 'logout' %}">LogOut</a>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                </div>
+
+                {% else %}
+
+                    <li>
+                        <a href="{% url 'login' %}">LogIn</a>
+                    </li>
+                </ul>
+                {% endif %}
+
                 <!-- Responsive Nav Bar -->
                 <div class="responsive-navbar">
                     <button id="nav-bar-open"><i class="fa fa-bars" aria-hidden="true"></i></button>
@@ -59,7 +130,8 @@
         </nav>
     </header>
     <!-- End Of Header  -->
-    {% endblock %}<!--  ##########################    EnD Block  ##################################   -->
+    {% endblock %}
+    <!--  ##########################    EnD Block  ##################################   -->
 
     {% block content %}
 
@@ -71,52 +143,53 @@
     <footer id="footer">
         <div class="container">
             <div class="intro">
-                    <h4 class="footer-title"><a href="#" class="logo">Rent Time</a></h4>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                    <a href="about.html">Read more <span class="fa fa-chevron-right" style="font-size: 11px;"></span></a>
+                <h4 class="footer-title"><a href="#" class="logo">Rent Time</a></h4>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                <a href="/about/">Read more <span class="fa fa-chevron-right" style="font-size: 11px;"></span></a>
+            </div>
+
+            <div class="Services">
+                <h4 class="footer-title">Services</h4>
+                <ul>
+                    <li><a href="#">Map Direction</a></li>
+                    <li><a href="#">Accomodation Services</a></li>
+                    <li><a href="#">Great Experience</a></li>
+                    <li><a href="#">Perfect central location</a></li>
+                </ul>
+            </div>
+
+            <div class="tag-cloud">
+                <h4 class="footer-title">Tags</h4>
+                <div class="short-link">
+                    <a href="#" class="tag-cloud-link">apartment</a>
+                    <a href="#" class="tag-cloud-link">home</a>
+                    <a href="#" class="tag-cloud-link">rental</a>
+                    <a href="#" class="tag-cloud-link">rent</a>
+                    <a href="#" class="tag-cloud-link">house</a>
+                    <a href="#" class="tag-cloud-link">place</a>
+                    <a href="#" class="tag-cloud-link">sleep</a>
+                </div>
+            </div>
+
+            <div class="subscribe">
+                <div class="subscribeWrapper">
+                    <h4 class="footer-title">Subcribe</h4>
+                    <form action="#" class="subscribe-form">
+                        <input type="email" class="form-control rounded-left" placeholder="Enter email address"
+                            required>
+                        <button type="submit"><i class="fa fa-paper-plane"></i></button>
+                    </form>
                 </div>
 
-                <div class="Services">
-                    <h4 class="footer-title">Services</h4>
+                <div id="social-links">
+                    <h4>Follow us</h4>
                     <ul>
-                        <li><a href="#">Map Direction</a></li>
-                        <li><a href="#">Accomodation Services</a></li>
-                        <li><a href="#">Great Experience</a></li>
-                        <li><a href="#">Perfect central location</a></li>
+                        <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="#"><span class="fa fa-instagram"></span></a></li>
                     </ul>
                 </div>
-
-                <div class="tag-cloud">
-                    <h4 class="footer-title">Tags</h4>
-                    <div class="short-link">
-                        <a href="#" class="tag-cloud-link">apartment</a>
-                        <a href="#" class="tag-cloud-link">home</a>
-                        <a href="#" class="tag-cloud-link">rental</a>
-                        <a href="#" class="tag-cloud-link">rent</a>
-                        <a href="#" class="tag-cloud-link">house</a>
-                        <a href="#" class="tag-cloud-link">place</a>
-                        <a href="#" class="tag-cloud-link">sleep</a>
-                    </div>
-                </div>
-
-                <div class="subscribe">
-                    <div class="subscribeWrapper">
-                        <h4 class="footer-title">Subcribe</h4>
-                        <form action="#" class="subscribe-form">
-                            <input type="email" class="form-control rounded-left" placeholder="Enter email address" required>
-                            <button type="submit"><i class="fa fa-paper-plane"></i></button>
-                        </form>
-                    </div>
-
-                    <div id="social-links">
-                        <h4>Follow us</h4>
-                        <ul>
-                            <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                            <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                            <li><a href="#"><span class="fa fa-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                </div>    
+            </div>
         </div>
 
         <div class="container hrtag">
@@ -132,8 +205,8 @@
                 </div>
                 <div class="terms-privacy">
                     <p>
-                        <a href="privacy.html">Terms</a>
-                        <a href="privacy.html">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Privacy</a>
                     </p>
                 </div>
             </div>
@@ -145,4 +218,5 @@
     <!-- Main script file -->
     <script src="{% static 'main.js' %}"></script>
 </body>
+
 </html>

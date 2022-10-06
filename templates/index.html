@@ -1,40 +1,81 @@
 {% extends 'layout.html' %}
- {% load static %}
+{% load static %}
+
 {% block title %}DashBoard{% endblock %}
 
 {% block content %}
+<div class="h-100 d-flex align-items-center justify-content-center">
+    <form method="get">
+        <div class="form-group">
+            <span style="border: 1px solid #ddd;
+                  padding: 10px;
+                  cursor: pointer;"> Area: {{myFilter.form.post_office}}</span>
+            &nbsp;
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <input name="address" placeholder="Street or area name.." type="text">
+            &nbsp;
+            <i class="fa fa-money" aria-hidden="true"></i> Rental Range:
+
+            <input style="background-color: beige; width: 80px;" name="rental__gte" name="quantity"
+                placeholder="Min">
+
+            <i class="fa fa-minus"></i>
+            &nbsp;
+            <input style="background-color: beige; width: 80px;" name="rental__lte" name="quantity"
+                placeholder="Max">
+
+            <input class="btn btn-outline-dark btn-sm" type="submit" value="Search" />
+        </div>
+
+    </form>
+</div>
+
 
 <section id="all-seller">
     <div class="container">
+
+
         {% for rent in rents %}
         <div class="seller">
-            <img src="{% static 'Images/pic2.jpg' %}" alt="Picture of sell Item">
+            <a href="/rents/details/{{rent.id}}" title="Click for Details">
+                <img src="{{rent.photo.url}}" alt="Picture of sell Item">
 
-            <h5>{{rent.address}}</h5>
+                <h5>{{rent.address}}</h5>
 
-            <div class="price-and-ageOfPerson">
-                <p>{{rent.address}}, {{rent.post_office}} </p>
-                <p>{{rent.owner}}</p>
-            </div>
+                <div class="price-and-ageOfPerson">
+                    <p>{{rent.address}}, {{rent.post_office}} </p>
+                </div>
 
-            <p>{{rent.description}}</p>
+                <p>{{rent.description|linebreaksbr}}</p>
+                <h6>Rental: <strong style="color: rgb(255, 123, 0);">{{rent.rental}}</strong></h6>
+                <small>{{rent.availability_date}}</small>
 
-            {% if rent.is_booked %}
-            
-            <small>Booked</small> 
-            
+            </a>
+            <span>Owner:
+                <a href="/profile/{{rent.owner}}/">
+                    <b>{{rent.owner}}</b>
+                </a>
+            </span>
+            <a href="/rents/add-request/{{rent.id}}/" class="btn btn-primary" data-toggle="tooltip"
+                data-placement="bottom" title="Send Booking Request">
+                <i class="fa fa-plus"></i>
+            </a>
+            {% if rent.is_shared %}
+            <a href="/profile/{{rent.renter}}/" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"
+                title="Contact with {{rent.renter}} to Share this Place">
+                {{rent.renter}} <span style="font-size: 80%;">is Looking for Roommate</span>
+            </a>
             {% else %}
-
-            <small>{{rent.availability_date}}</small>
-
+            <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-outline-dark" data-toggle="tooltip"
+                data-placement="bottom" title="Look for Roommates">
+                <i class="fa fa-people-arrows"></i>
+            </a>
             {% endif %}
         </div>
-        <!-- End of each seller Post -->
         {% endfor %}
-       
-    </div>            
+        <!-- End of each seller Post -->
+    </div>
 </section>
 <!-- End of Post section -->
 
 {% endblock %}
-

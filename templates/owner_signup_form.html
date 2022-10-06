@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}DashBoard{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!-- Here strat main part -->
+<main>
+
+    <div id="register-page">
+        <div class="container">
+            <div class="form-box">
+                <h4 id="signup-text">Owner Register</h4>
+
+                <div class="button-box">
+                    <div style="left: 50%;" id="btn"></div>
+                    <a style="color: #2f3a4a; " href="/signup/renter/" type="button" id="studentBtn" class="toggle-btn">
+                        Student </a>
+                    <a style="color: white; " href="/signup/owner/" type="button" id="ownerBtn" class="toggle-btn">
+                        Owner </a>
+                </div>
+
+                <form method="post" id="student" class="input-group" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input class="" type="text" name="username" required="" maxlength="64"
+                            placeholder="User Name" />
+                    </div>
+
+                    <div class="name-field">
+                        <div>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <input class="" type="text" name="first_name" required="" maxlength="64"
+                                placeholder="First Name" />
+                        </div>
+
+                        <div>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <input class="" type="text" name="last_name" required="" maxlength="64"
+                                placeholder="Last Name" />
+                        </div>
+                    </div>
+
+
+                    <div class="input-field">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <input class="" type="email" name="email" required="" maxlength="64" placeholder="Email" />
+                    </div>
+
+
+                    <div class="input-field">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input class="" type="password" name="password1" id="exampleInputPassword1" required=""
+                            maxlength="64" placeholder="Password" />
+                    </div>
+
+
+                    <div class="input-field">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input class="" type="password" name="password2" id="{{form.id_password_repeat}}" required=""
+                            maxlength="64" placeholder="Confirm password" />
+                    </div>
+
+                    <div class="input-field">
+                        {{form.photo}}
+                    </div>
+
+                    {% if form.errors %}
+                    <h5 style="color:purple"> This fields are required :</h5>
+                    {% for error in form.errors %}
+                    <pre style="color: red ; background-color:#e0e0e0;">{{ error }}</pre>
+                    {% endfor %}
+                    {% endif %}
+
+                    <button class="btn btn-sm btn-dark" id="register-btn" type="submit">Submit</button>
+
+                    <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
+                </form>
+            </div>
+
+            <img src="{% static 'images/login.svg' %}" alt="Picture of Login Picture">
+        </div>
+    </div>
+</main>
+<!-- Here End main part -->
+
+{% endblock %}
