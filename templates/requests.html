@@ -20,7 +20,7 @@
         <thead>
             <tr>
                 <th>Sl.</th>
-                <th>Flat Id</th>
+                <th>Flat</th>
                 <th>Renter</th>
                 <th>Place Share</th>
                 <th>Requested Date</th>
@@ -29,13 +29,17 @@
                 <th>Accept</th>
                 <th>Reject</th>
                 {% endif %}
+                {% if request.user.is_renter %}
+                <th>Cancel</th>
+                {% endif %}
+
             </tr>
         </thead>
         <tbody>
             {% for req in requests %}
             <tr>
                 <td>{{forloop.counter}}</td>
-                <td><a href="/rents/details/{{req.flat}}/">{{req.flat}}</a></td>
+                <td><a href="/rents/details/{{req.flat.id}}/">{{req.flat | linebreaksbr}}</a></td>
                 <td><a href="/profile/{{req.renter}}/">{{req.renter}}</a></td>
                 <td>{% if req.is_roommate %} Shared {% else %} Not Shared {% endif %} </td>
                 <td>{{req.created_date}}</td>
@@ -43,8 +47,9 @@
                 
                 {% if request.user.is_owner or request.user.is_superuser %}
                 <td>{% if req.is_accepted %} <a type="button" class="btn btn-success disabled">&#10004;</a> {% else %} <a class="btn btn-success" href="/rents/accept_request/{{req.id}}/">&#10004;</a>  {% endif %}</td>
-                <td>{% if req.is_accepted %} <a type="button" class="btn btn-danger disabled">x</a> {% else %} <a class="btn btn-danger" href="/rents/delete_request/{{req.id}}/">x</a> {% endif %}</td>
                 {% endif %}
+                <td>{% if req.is_accepted %} <a type="button" class="btn btn-danger disabled">x</a> {% else %} <a class="btn btn-danger" href="/rents/delete_request/{{req.id}}/">x</a> {% endif %}</td>
+
 
             </tr>
             {% endfor %}

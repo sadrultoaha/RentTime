@@ -20,9 +20,10 @@
                         Owner </a>
                 </div>
 
-                <form method="post" id="student" class="input-group" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="input-field">
+                    {{form | crispy }}
+                    <!-- <div class="input-field">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <input class="" type="text" name="username" required="" maxlength="64"
                             placeholder="User Name" />
@@ -64,18 +65,18 @@
 
                     <div class="input-field">
                         {{form.photo}}
-                    </div>
+                    </div> -->
 
-                    {% if form.errors %}
+                    <!-- {% if form.errors %}
                     <h5 style="color:purple"> This fields are required :</h5>
                     {% for error in form.errors %}
                     <pre style="color: red ; background-color:#e0e0e0;">{{ error }}</pre>
                     {% endfor %}
-                    {% endif %}
+                    {% endif %} -->
 
-                    <button class="btn btn-sm btn-dark" id="register-btn" type="submit">Submit</button>
+                    <button class="btn btn-sm btn-dark text-center" style="margin: 30px 10px 10px 0; width: 100%;" type="submit">Submit</button>
 
-                    <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
+                    <p id="login-link">Already have an Account? <a href="{% url 'login' %}">Login</a></p>
                 </form>
             </div>
 

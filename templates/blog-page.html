@@ -7,7 +7,7 @@
 
 <main>
     <h3 class="position-absolute end-50">Blog Posts</h3>
-    {% if user.is_owner or user.is_superuser %}
+    {% if user.is_superuser %}
     <div class="position-absolute end-0">
         <a href="/blogs/new/"> <button style="border-radius: 50px; " type="button"
                 class="btn btn-warning btn-circle btn-lg" title="Add New Blog"><i class="fa fa-plus"></i></button></a>

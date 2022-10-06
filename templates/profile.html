@@ -6,33 +6,21 @@
 
 <main>
     <div id="dash-board">
-
-
         <div class="container">
-            <div class="left-side">
-                <div class="profile">
-                    <img src="images/man1.jpg" alt="Picture of user">
+            <div class="profile">
+                <img src="{{user.photo.url}}" alt="Picture of user">
 
-                    <p>Accounts with connected profiles are more likely to find roommates!</p>
-                    <p><a href="#">Connect LinkedIn Profile</a></p>
-                </div>
+                <p>Accounts with connected profiles are more likely to find roommates!</p>
+                <p><a href="#">Connect LinkedIn Profile</a></p>
             </div>
-
-            <div class="right-side">
-                <div class="about-user">
-                    <div>
-                        <p><i class="fa fa-user" aria-hidden="true"></i></p>
-                        <h4>ABOUT IMTIAZ</h4>
-                    </div>
-
-                    <div>
-                        <p><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</a></p>
-                    </div>
-                </div>
+        </div>
+        <div id="directory-and-item-details">
+            <div class="container">
+            
                 <!-- Sell Info -->
                 <div class="sell-info">
                     <div class="name-request">
-                        <h4>Imtiaz Hossain</h4>
+                        <h4>{{user}}</h4>
                     </div>
                     <p class="online-status">Online: <span>Over 5 days</span></p>
 

@@ -12,32 +12,13 @@
 
             <form method="post" class="form-container">
                 {% csrf_token %}
+
                 <h4>Member Login</h4>
-
-                <div class="input-field">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-
-                    {{ form.username | as_crispy_field }}
-
-                </div>
-                <!-- Each Input Field -->
-
-                <div class="input-field">
-                    <i class="fa fa-lock" aria-hidden="true"></i>
-                    {{ form.password | as_crispy_field }}
-                </div>
-                <!-- Each Input Field -->
-
-                {% if form.errors %}
-                <h5 style="color:purple"> This fields are required :</h5>
-                {% for error in form.errors %}
-                <pre style="color: red ; background-color:#e0e0e0;">{{ error }}</pre>
-                {% endfor %}
-                {% endif %}
-
-
+                {{form | crispy}}
+                
+            
                 <button id="login-btn" type="submit">LOGIN</button>
-                <p><a href="#">Forgot Username</a> / <a href="#">Password?</a></p>
+                
                 <p id="sign-link">Don't have an Account? <a href="/signup/renter/">Sign Up</a></p>
             </form>
 

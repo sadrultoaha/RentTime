@@ -19,7 +19,7 @@
             letter-spacing: 1px;
             line-height: 200%;">{{blog.description|linebreaksbr}}</div>
 
-            {% if user.is_owner or user.is_superuser %}
+            {% if user.is_superuser %}
             <div class="position-absolute end-0">
                 <a href="/blogs/details/{{blog.id}}/edit/"> <button type="button" class="btn btn-primary" title="Edit"><i
                             class="fa fa-pen"></i></button></a>

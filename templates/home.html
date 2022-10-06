@@ -18,6 +18,7 @@
             <h3 id="responsive-title">Rent Time - Home Renting Made Simple</h3>
 
             <div class="right-side-content">
+                {% if user.is_renter %}
                 <div class="each-content-box">
                     <h5>I need a roommate</h5>
                     <p>Create a listing for a potential <br>roommate</p>
@@ -29,12 +30,15 @@
                     <p>Create a listing for a potential <br> roommate</p>
                     <button><a href="/rents/{{'all'}}/">Find House</a></button>
                 </div>
+                {% endif %}
 
+                {% if user.is_superuser or user.is_owner %}
                 <div class="each-content-box">
                     <h5>Add my vacant place </h5>
                     <p>Create a listing for post ads</p>
                     <button><a href="rents/new ">Add Place</a></button>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -72,7 +76,7 @@
             {% for rent in rents %}
             <div class="seller">
                 <a href="/rents/details/{{rent.id}}" title="Click for Details">
-                    <img src="{{rent.photo.url}}" alt="Picture of sell Item">
+                    <img src="{{rent.photo1.url}}" alt="Picture of sell Item">
 
                     <h5>{{rent.address}}</h5>
 
@@ -82,7 +86,7 @@
 
 
                     <p>{{rent.description|linebreaksbr}}</p>
-                    <h6>Rental: <strong style="color: rgb(255, 123, 0);">{{rent.rental}}</strong></h6>
+                    <h6>Rental: <strong style="color: rgb(255, 123, 0);">BDT {{rent.rental}}/=</strong></h6>
                     <small>{{rent.availability_date}}</small>
 
                 </a>
@@ -91,20 +95,25 @@
                         <b>{{rent.owner}}</b>
                     </a>
                 </span>
+                {% if user.is_renter %}
                 <a href="/rents/add-request/{{rent.id}}/" class="btn btn-primary" data-toggle="tooltip"
                     data-placement="bottom" title="Send Booking Request">
                     <i class="fa fa-plus"></i>
                 </a>
+                {% endif %}
+                
                 {% if rent.is_shared %}
                 <a href="/profile/{{rent.renter}}/" class="btn btn-warning" data-toggle="tooltip"
                     data-placement="bottom" title="Contact with {{rent.renter}} to Share this Place">
                     {{rent.renter}} <span style="font-size: 80%;">is Looking for Roommate</span>
                 </a>
                 {% else %}
+                {% if user.is_renter %}
                 <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-outline-dark " data-toggle="tooltip"
                     data-placement="bottom" title="Look for Roommates">
                     <i class="fa fa-people-arrows"></i>
                 </a>
+                {% endif %}
                 {% endif %}
             </div>
             {% endfor %}

@@ -75,8 +75,9 @@
                         <div class="menu-items">
                             <div class="each-item profile-shortcut">
                                 <img src="{{user.photo.url}}" alt="Avater">
-                                <p><a href="settings.html">{{user}}</a></p>
+                                <p><a href="/profile/{{user}}/">{{user}}</a></p>
                             </div>
+                            {% if user.is_renter or user.is_owner %}
                             <div class="each-item">
                                 <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                 {% if user.is_renter %}
@@ -85,6 +86,9 @@
                                 <p><a href="/requests/">Requests</a></p>
                                 {% endif %}
                             </div>
+                            {% endif %}
+
+                            {% if user.is_renter or user.is_owner %}
                             <div class="each-item">
                                 <i class="fa fa-list-ul" aria-hidden="true"></i>
                                 {% if user.is_renter %}
@@ -93,14 +97,18 @@
                                 <p><a href="/listings/">My Listings</a></p>
                                 {% endif %}
                             </div>
+                            {% endif %}
+
                             <div class="each-item">
                                 <i class="fa fa-sliders" aria-hidden="true"></i>
                                 <p><a href="/profile_edit/">Settings</a></p>
                             </div>
+                            {% if user.is_superuser %}
                             <div class="each-item">
                                 <i class="fa fa-camera-retro" aria-hidden="true"></i>
                                 <p><a href="/myblogs/">Blogs</a></p>
                             </div>
+                            {% endif %}
                             <div class="log-out">
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                                 <a href="{% url 'logout' %}">LogOut</a>
