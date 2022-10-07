@@ -61,11 +61,8 @@
 
                 {% if user.is_authenticated %}
                 </ul>
-
                 <!-- Setting Menu -->
-               
                 <div class="profile-icon" onclick="settingsMenuToggle()">
-                   
                     <img src="{{user.photo.url}}" alt="Avater">
                     <b style="color: white;">{{user}}</b>
                 </div>
@@ -114,10 +111,7 @@
                                 <a href="{% url 'logout' %}">LogOut</a>
                             </div>
                         </div>
-
-                        
                     </div>
-
                 </div>
 
                 {% else %}

@@ -113,7 +113,6 @@ def requested_rents(request):
     elif request.user.is_superuser:
         requests = list( Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True).filter(owner = request.user)), is_deleted = False))
         requests.extend( Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True)), renter = request.user, is_deleted = False))
-       
     else:
         requests = Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True)), renter = request.user)
         

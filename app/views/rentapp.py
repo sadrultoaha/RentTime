@@ -84,7 +84,19 @@ class UserPassword(PasswordContextMixin, FormView):
 
 @login_required
 def UserProfile(request, user):
-    return render(request,'profile.html',{'user': user})
+    cur_user =  User.objects.get(username=user)
+
+    if cur_user.is_renter:
+        requests = Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True)), renter = cur_user, is_accepted = True)
+    else:
+        requests = Request.objects.filter(flat__in = list(Rent.objects.values_list('id', flat=True).filter(owner = cur_user)), is_deleted = False, is_accepted = True )
+
+    context={
+        'cur_user':cur_user,
+        'requests':requests,
+
+    }
+    return render(request,'profile.html', context)
         
 def UserProfile_edit(request):
     user = request.user

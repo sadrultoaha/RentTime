@@ -87,7 +87,7 @@
 
                     <p>{{rent.description|linebreaksbr}}</p>
                     <h6>Rental: <strong style="color: rgb(255, 123, 0);">BDT {{rent.rental}}/=</strong></h6>
-                    <small>{{rent.availability_date}}</small>
+                    <small>{{rent.availability_date | date:'Y-m-d H:i'}}</small>
 
                 </a>
                 <span>Owner:
@@ -101,19 +101,20 @@
                     <i class="fa fa-plus"></i>
                 </a>
                 {% endif %}
-                
-                {% if rent.is_shared %}
-                <a href="/profile/{{rent.renter}}/" class="btn btn-warning" data-toggle="tooltip"
-                    data-placement="bottom" title="Contact with {{rent.renter}} to Share this Place">
-                    {{rent.renter}} <span style="font-size: 80%;">is Looking for Roommate</span>
-                </a>
-                {% else %}
+
                 {% if user.is_renter %}
-                <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-outline-dark " data-toggle="tooltip"
-                    data-placement="bottom" title="Look for Roommates">
-                    <i class="fa fa-people-arrows"></i>
-                </a>
-                {% endif %}
+                    {% if rent.is_shared %}
+                    <a href="/profile/{{rent.renter}}/" class="btn btn-warning" data-toggle="tooltip"
+                        data-placement="bottom" title="Contact with {{rent.renter}} to Share this Place">
+                        {{rent.renter}} <span style="font-size: 80%;">is Looking for Roommate</span>
+                    </a>
+                    {% else %}
+                    
+                    <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-outline-dark " data-toggle="tooltip"
+                        data-placement="bottom" title="Look for Roommates">
+                        <i class="fa fa-people-arrows"></i>
+                    </a>
+                    {% endif %}
                 {% endif %}
             </div>
             {% endfor %}

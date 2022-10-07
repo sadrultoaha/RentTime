@@ -53,13 +53,13 @@ class PostOffice(models.Model):
 
 class User(AbstractUser):
     GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('O', 'Other')
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other')
     )
     is_renter = models.BooleanField(default = False)
     is_owner = models.BooleanField(default = False)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True, blank=True)
     nid = models.CharField(max_length=13, null=True, blank=True)
     mobile_No = models.CharField(max_length=11, null = False, blank=False)
     affiliation_name = models.CharField(max_length=20, null = True, blank=True)

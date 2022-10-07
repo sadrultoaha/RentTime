@@ -25,7 +25,7 @@
                     
                     <div class="details">
                         <h5><b>{{blog.title}}</b></h5>
-                        <small>{{blog.created_date}}</small>
+                        <small>{{blog.created_date | date:'Y-m-d H:i'}}</small>
                         <p><a href="/blogs/details/{{blog.id}}/" type="button" class="btn btn-outline-primary">See more</a></p>
                     </div>
                 </div>
