@@ -39,6 +39,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'contact',
     'django_filters',
     'crispy_forms',
     'app',
@@ -173,12 +174,13 @@ MESSAGE_TAGS = {
 
 # Previous settings ...
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_HOST = 'smtp.gmail.com' #env('EMAIL_HOST')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = 'csresearchcsr@gmail.com' #env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = 'adlkynoqqajnesea' #env('EMAIL_HOST_PASSWORD')
 
 # Custom setting. To email
-RECIPIENT_ADDRESS = env('RECIPIENT_ADDRESS')
+EMAIL_SENDER_INFO = ''
+RECIPIENT_ADDRESS = ''
 
