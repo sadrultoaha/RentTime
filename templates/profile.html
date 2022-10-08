@@ -16,7 +16,7 @@
             <p class="text-muted mb-1">{% if cur_user.is_renter %} Student {% else %} Place Owner {% endif %}</p>
             <p class="text-muted mb-4">{{cur_user.present_address}}</p>
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+              <a href="/contact/{{cur_user}}"><button type="button" class="btn btn-outline-dark ms-1">Message</button></a>
             </div>
           </div>
         </div>

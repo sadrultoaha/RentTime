@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app.urls')),
     path('', include('django.contrib.auth.urls')),
+    path('', include('contact.urls')),
     
     path('signup/renter/', RenterSignUpView.as_view(), name='renter_signup'),
     path('signup/owner/', OwnerSignUpView.as_view(), name='owner_signup'),
