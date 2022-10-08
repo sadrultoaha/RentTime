@@ -53,19 +53,19 @@ class PostOffice(models.Model):
 
 class User(AbstractUser):
     GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('O', 'Other')
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other')
     )
     is_renter = models.BooleanField(default = False)
     is_owner = models.BooleanField(default = False)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='')
-    nid = models.CharField(max_length=13, null=True)
-    mobile_No = models.CharField(max_length=11, null = True)
-    affiliation_name = models.CharField(max_length=20, null = True)
-    affiliation_id = models.CharField(max_length=20, null = True)
-    dob = models.DateTimeField(null = True)
-    present_address = models.CharField(max_length=255, null=True)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True, blank=True)
+    nid = models.CharField(max_length=13, null=True, blank=True)
+    mobile_No = models.CharField(max_length=11, null = False, blank=False)
+    affiliation_name = models.CharField(max_length=20, null = True, blank=True)
+    affiliation_id = models.CharField(max_length=20, null = True, blank=True)
+    dob = models.DateTimeField(null=True,blank=True)
+    present_address = models.CharField(max_length=255, blank=True)
     photo = models.ImageField(upload_to='images/', default='images/user.jpg', blank=True)
 
     def __str__(self):
@@ -84,16 +84,26 @@ class Rent(models.Model):
     is_shared = models.BooleanField(default = False)
     created_date = models.DateTimeField(default=timezone.now)
     modified_date = models.DateTimeField(null = True)
-    photo = models.ImageField(upload_to='images/', default='images/home.jpg', blank=True)
+    photo1 = models.ImageField(upload_to='images/', default='images/home.jpg', blank=True)
+    photo2 = models.ImageField(upload_to='images/', default='images/home.jpg', blank=True)
+    photo3 = models.ImageField(upload_to='images/', default='images/home.jpg', blank=True)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.address) + str(': ') + str(self.owner)
 
     def save(self):
         super().save() 
-        img = Image.open(self.photo.path)
-        new_img = img.resize((300, 300), resample=Image.ANTIALIAS)
-        new_img.save(self.photo.path)
+        img1 = Image.open(self.photo1.path)
+        new_img1 = img1.resize((300, 300), resample=Image.ANTIALIAS)
+        new_img1.save(self.photo1.path)
+
+        img2 = Image.open(self.photo2.path)
+        new_img2 = img2.resize((300, 300), resample=Image.ANTIALIAS)
+        new_img2.save(self.photo2.path)
+
+        img3 = Image.open(self.photo3.path)
+        new_img3 = img3.resize((300, 300), resample=Image.ANTIALIAS)
+        new_img3.save(self.photo3.path)
 
 class Request(models.Model):
     flat = models.ForeignKey('Rent', related_name='requested_rent', on_delete=models.CASCADE)
@@ -119,10 +129,3 @@ class Blog(models.Model):
 
     def __str__(self):
         return str(self.id)
-
-    # def save(self):
-    #     super().save() 
-    #     img = Image.open(self.photo.path)
-    #     new_img = img.resize((350, 450), resample=Image.ANTIALIAS)
-    #     new_img.save(self.photo.path)
-

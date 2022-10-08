@@ -1,5 +1,5 @@
 from django.urls import include, path
-from .views import rentapp, renters, owners, rents
+from .views import rentapp, rents
 from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
@@ -31,16 +31,9 @@ urlpatterns = [
     path('blogs/details/<int:pk>/edit/', rentapp.blog_edit, name='blog_edit'),
 
 
-    path('profile/<user>/',renters.RentersProfile, name='renters_profile'),
-    path('profile_edit/',renters.RentersProfile_edit, name='renters_profile_edit'),
-    path('profile_edit/password/',renters.RentersPassword.as_view(), name='renters_password'),
+    path('profile/<user>/',rentapp.UserProfile, name='user_profile'),
+    path('profile_edit/',rentapp.UserProfile_edit, name='user_profile_edit'),
+    path('profile_edit/password/',rentapp.UserPassword.as_view(), name='user_password'),
 
-    #path('owners/',renters.owner,name='owners'),
-    #path('owner/profile/<user>/',owners.ownersProfile, name='ownersProfile'),
-    #path('owner/<user>/profile_edit/',owners.ownersProfile_edit, name='ownersProfile_edit'),
-    #path('owner/<user>/profile_edit/Password/',owners.ownersPassword.as_view(), name='ownersPassword'),
 
-    # path('profile/', TemplateView.as_view(template_name='registration/profile.html'), name='ProgrammersProfile'),
-    # path('renters/',renters.ProgrammersProfile, name='ProgrammersProfile'),
-    # path('owners/ownersProfile/',TemplateView.as_view(template_name='registration/profile.html'), name='ownersProfile'),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

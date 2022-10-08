@@ -38,7 +38,7 @@
         {% for rent in rents %}
         <div class="seller">
             <a href="/rents/details/{{rent.id}}" title="Click for Details">
-                <img src="{{rent.photo.url}}" alt="Picture of sell Item">
+                <img src="{{rent.photo1.url}}" alt="Picture of sell Item">
 
                 <h5>{{rent.address}}</h5>
 
@@ -47,8 +47,8 @@
                 </div>
 
                 <p>{{rent.description|linebreaksbr}}</p>
-                <h6>Rental: <strong style="color: rgb(255, 123, 0);">{{rent.rental}}</strong></h6>
-                <small>{{rent.availability_date}}</small>
+                <h6>Rental: <strong style="color: rgb(255, 123, 0);">BDT {{rent.rental}}/=</strong></h6>
+                <small>{{rent.availability_date | date:'Y-m-d H:i'}}</small>
 
             </a>
             <span>Owner:
@@ -56,21 +56,29 @@
                     <b>{{rent.owner}}</b>
                 </a>
             </span>
+            
+            {% if user.is_renter %}
             <a href="/rents/add-request/{{rent.id}}/" class="btn btn-primary" data-toggle="tooltip"
                 data-placement="bottom" title="Send Booking Request">
                 <i class="fa fa-plus"></i>
             </a>
+            {% endif %}
+            
             {% if rent.is_shared %}
-            <a href="/profile/{{rent.renter}}/" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom"
-                title="Contact with {{rent.renter}} to Share this Place">
+            <a href="/profile/{{rent.renter}}/" class="btn btn-warning" data-toggle="tooltip"
+                data-placement="bottom" title="Contact with {{rent.renter}} to Share this Place">
                 {{rent.renter}} <span style="font-size: 80%;">is Looking for Roommate</span>
             </a>
             {% else %}
-            <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-outline-dark" data-toggle="tooltip"
+            {% if user.is_renter %}
+            <a href="/rents/add_roommate_status/{{rent.id}}/" class="btn btn-outline-dark " data-toggle="tooltip"
                 data-placement="bottom" title="Look for Roommates">
                 <i class="fa fa-people-arrows"></i>
             </a>
             {% endif %}
+            {% endif %}
+
+
         </div>
         {% endfor %}
         <!-- End of each seller Post -->

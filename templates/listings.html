@@ -19,8 +19,8 @@
                 </div>
 
                 <p>{{rent.description|linebreaksbr}}</p>
-                <h6>Rental: <strong style="color: rgb(255, 123, 0);">{{rent.rental}}</strong></h6>
-                <small>{{rent.availability_date}}</small>
+                <h6>Rental: <strong style="color: rgb(255, 123, 0);">BDT {{rent.rental}}/=</strong></h6>
+                <small>{{rent.availability_date | date:'Y-m-d H:i'}}</small>
 
             </a>
 
@@ -42,7 +42,7 @@
                 Shared
             </a>
             {% else %}
-            <a href="/profile/{{rent.renter}}/" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom">
+            <a href="#" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom">
 
                 Not Shared
             </a>

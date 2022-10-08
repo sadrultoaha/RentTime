@@ -20,62 +20,13 @@
                         Owner </a>
                 </div>
 
-                <form method="post" id="student" class="input-group" enctype="multipart/form-data">
+                <form method="post" id="student" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="input-field">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <input class="" type="text" name="username" required="" maxlength="64"
-                            placeholder="User Name" />
-                    </div>
+                    {{ form | crispy }}
+                    
+                    <button class="btn btn-sm btn-dark text-center" style="margin: 30px 10px 10px 0; width: 100%;" type="submit">Submit</button>
 
-                    <div class="name-field">
-                        <div>
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <input class="" type="text" name="first_name" required="" maxlength="64"
-                                placeholder="First Name" />
-                        </div>
-
-                        <div>
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <input class="" type="text" name="last_name" required="" maxlength="64"
-                                placeholder="Last Name" />
-                        </div>
-                    </div>
-
-
-                    <div class="input-field">
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        <input class="" type="email" name="email" required="" maxlength="64" placeholder="Email" />
-                    </div>
-
-
-                    <div class="input-field">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        <input class="" type="password" name="password1" id="exampleInputPassword1" required=""
-                            maxlength="64" placeholder="Password" />
-                    </div>
-
-
-                    <div class="input-field">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        <input class="" type="password" name="password2" id="{{form.id_password_repeat}}" required=""
-                            maxlength="64" placeholder="Confirm password" />
-                    </div>
-
-                    <div class="input-field">
-                        {{form.photo}}
-                    </div>
-
-                    {% if form.errors %}
-                    <h5 style="color:purple"> This fields are required :</h5>
-                    {% for error in form.errors %}
-                    <pre style="color: red ; background-color:#e0e0e0;">{{ error }}</pre>
-                    {% endfor %}
-                    {% endif %}
-
-                    <button class="btn btn-sm btn-dark" id="register-btn" type="submit">Submit</button>
-
-                    <p id="login-link">Already have an Account? <a href="login.html">Login</a></p>
+                    <p id="login-link">Already have an Account? <a href="{%url 'login'%}">Login</a></p>
                 </form>
             </div>
 

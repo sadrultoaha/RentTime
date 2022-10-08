@@ -33,7 +33,13 @@ background-position: center;" class="row" class="row">
                             {{form.description | as_crispy_field}}
                         </div>
                         <div class="form-group">
-                            {{form.photo | as_crispy_field }}
+                            {{form.photo1 | as_crispy_field }}
+                        </div>
+                        <div class="form-group">
+                            {{form.photo2 | as_crispy_field }}
+                        </div>
+                        <div class="form-group">
+                            {{form.photo3 | as_crispy_field }}
                         </div>
                         <br>
                         <p> <b>Onwer:</b>{% if req.user.first_name %} {{ req.user.first_name }} {{ req.user.last_name }}

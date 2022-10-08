@@ -761,7 +761,6 @@ h4.footer-title, h4.footer-title a {
 /* Regitration from design Start*/
 #register-page .container .form-box{
     position: relative;
-    height: 800px;
     overflow: hidden;
 }
 #register-page .container .form-box .input-group{

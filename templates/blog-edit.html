@@ -4,8 +4,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div style=" background:linear-gradient(to top, rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.600)), url({% static 'images/recent.jpg' %});
-background-position: center;" class="row" class="row">
+<div style="background:linear-gradient(to top, rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.600)), url({% static 'images/recent.jpg' %}); background-position: center;" class="row" class="row">
     <div class="col-lg-7 mx-auto">
         <div class="card mt-2 mx-auto bg-dark">
             <div class="card-body bg-light">
@@ -15,7 +14,6 @@ background-position: center;" class="row" class="row">
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group">
-
                             {{ form.title | as_crispy_field}}
                         </div>
 
@@ -38,9 +36,11 @@ background-position: center;" class="row" class="row">
                         {% endfor %}
                         {% endif %}
 
+                        {% if user.is_superuser %}
                         <div class="form-group text-center">
                             <button class="btn btn-primary" type="submit"> Save </button>
                         </div>
+                        {% endif %}
                     </form>
 
                 </div>

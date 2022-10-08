@@ -8,7 +8,7 @@
     <section id="blog">
         <div class="container">
             <h3>{{blog.title}}</h3>
-            <small>Published on {{blog.created_date}}</small>
+            <small>Published on {{blog.created_date | date:'Y-m-d H:i'}}</small>
 
             <img src="{{blog.photo.url}}" width="1100" height="550">
 
@@ -19,7 +19,7 @@
             letter-spacing: 1px;
             line-height: 200%;">{{blog.description|linebreaksbr}}</div>
 
-            {% if user.is_owner or user.is_superuser %}
+            {% if user.is_superuser %}
             <div class="position-absolute end-0">
                 <a href="/blogs/details/{{blog.id}}/edit/"> <button type="button" class="btn btn-primary" title="Edit"><i
                             class="fa fa-pen"></i></button></a>

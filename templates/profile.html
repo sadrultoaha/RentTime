@@ -1,255 +1,316 @@
 {% extends 'layout.html' %}
 {% load static %}
-{% block title %} Rent Update {% endblock %}
+
+{% block title %}DashBoard{% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
 
-<main>
-    <div id="dash-board">
-
-
-        <div class="container">
-            <div class="left-side">
-                <div class="profile">
-                    <img src="images/man1.jpg" alt="Picture of user">
-
-                    <p>Accounts with connected profiles are more likely to find roommates!</p>
-                    <p><a href="#">Connect LinkedIn Profile</a></p>
-                </div>
+<section style="background-color: #eee;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="{{cur_user.photo.url}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{cur_user.cur_username}}</h5>
+            <p class="text-muted mb-1">{% if cur_user.is_renter %} Student {% else %} Place Owner {% endif %}</p>
+            <p class="text-muted mb-4">{{cur_user.present_address}}</p>
+            <div class="d-flex justify-content-center mb-2">
+              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
             </div>
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <center><b>Rent History</b></center>
+            <hr>
+            <ul class="list-group list-group-flush rounded-3">
+              {% for req in requests %}
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <span>{{forloop.counter}}.</span>
+                {% if cur_user.is_renter %}
+                <p class="mb-0">{{req.flat.address}} - {{req.created_date | date:'Y-m-d' }}</p>
+                {% else %}
+                <p class="mb-0">{{req.renter}} - {{req.created_date | date:'Y-m-d' }}</p>
+                {% endif %}
+              </li>
+              {% endfor %}
 
-            <div class="right-side">
-                <div class="about-user">
-                    <div>
-                        <p><i class="fa fa-user" aria-hidden="true"></i></p>
-                        <h4>ABOUT IMTIAZ</h4>
-                    </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{cur_user.first_name}} {{cur_user.last_name}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{cur_user.email}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Mobile</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{cur_user.mobile_No}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Gender</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{cur_user.gender}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{cur_user.present_address}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nid</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{cur_user.nid}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Date of Birth</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{cur_user.dob | date:'Y-m-d'}}</p>
+              </div>
+            </div>
+            <hr>
+            {% if cur_user.is_renter %}
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Institute</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{cur_user.affiliation_name}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Institutional Id</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{cur_user.affiliation_id}}</p>
+              </div>
+            </div>
+            <hr>
+            {% endif %}
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Last Activity</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{cur_user.last_login | date:'Y-m-d H:i'}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Joined Since</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{cur_user.date_joined | date:'Y-m-d'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                    <div>
-                        <p><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</a></p>
-                    </div>
-                </div>
-                <!-- Sell Info -->
-                <div class="sell-info">
-                    <div class="name-request">
-                        <h4>Imtiaz Hossain</h4>
-                    </div>
-                    <p class="online-status">Online: <span>Over 5 days</span></p>
-
-                    <hr>
-
-                    <div class="each-info">
-                        <p class="name">Date Available</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">7 Aug 2022 for 2 to 3 months</p>
-                    </div>
-                    <!-- Each info -->
-
-                    <div class="each-info">
-                        <p class="name">Age and gender</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">One person. Male (str). 25 to 30 years.</p>
-                    </div>
-                    <!-- Each info -->
-
-                    <div class="each-info">
-                        <p class="name">Smoker</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">Non-smoker</p>
-                    </div>
-                    <!-- Each info -->
-
-                    <div class="each-info">
-                        <p class="name">Main interests</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">Travel</p>
-                    </div>
-                    <!-- Each info -->
-
-                    <div class="each-info">
-                        <p class="name">Student</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">Full Time</p>
-                    </div>
-                    <!-- Each info -->
-                </div>
-
-                <!-- Sell Info -->
-                <div class="sell-info">
-                    <div class="about-info">
-                        <p class="about-person">Important Personal Qualities</p>
-                        <p class="condition">Honest and Good Sense of Humor</p>
-                    </div>
-                    <!-- Each info -->
-                </div>
-
-                <!-- Sell Info -->
-                <div class="sell-info">
-                    <div class="about-info">
-                        <p class="about-person">Food Sharing and Furniture</p>
-                        <p class="condition">I prefer not to share my foods. I like to have a furnished house.</p>
-                    </div>
-                    <!-- Each info -->
-                </div>
-
+        {% if cur_user.is_renter %}
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
                 <!-- Sell Info Preferance Title -->
                 <div class="search-preferance">
-                    <h4>SEARCH PREFERENCES</h4>
+                  <h3>SEARCH PREFERENCES</h3>
                 </div>
+                <hr>
                 <!-- Sell Info -->
                 <div class="sell-info">
-                    <h5>Home Preferance</h5>
+                  <h4>Home Preferance</h4>
 
-                    <div class="each-info">
-                        <p class="name">Rent Budget</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">৳ 7000 per month</p>
-                    </div>
-                    <!-- Each info -->
+                  <div class="each-info">
+                    <b class="name">Rent Budget:</b>
+                    <p class="condition">৳ 7000 per month</p>
+                  </div>
+                  <!-- Each info -->
 
-                    <div class="each-info">
-                        <p class="name">Bedroom Type</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">Private Bedroom</p>
-                    </div>
-                    <!-- Each info -->
+                  <div class="each-info">
+                    <b class="name">Bedroom Type:</b>
+                    <p class="condition">Private Bedroom</p>
+                  </div>
+                  <!-- Each info -->
 
-                    <div class="each-info">
-                        <p class="name">Balcony</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">Attach balcony preferable</p>
-                    </div>
-                    <!-- Each info -->
+                  <div class="each-info">
+                    <b class="name">Balcony:</b>
+                    <p class="condition">Attach balcony preferable</p>
+                  </div>
+                  <!-- Each info -->
 
-                    <div class="each-info">
-                        <p class="name">Home Sizes</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">Any home size</p>
-                    </div>
-                    <!-- Each info -->
+                  <div class="each-info">
+                    <b class="name">Home Sizes:</b>
+                    <p class="condition">Any home size</p>
+                  </div>
+                  <!-- Each info -->
 
-                    <div class="each-info">
-                        <p class="name">Bedroom Sizes</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">Single</p>
-                    </div>
-                    <!-- Each info -->
+                  <div class="each-info">
+                    <b class="name">Bedroom Sizes:</b>
+                    <p class="condition">Single</p>
+                  </div>
+                  <!-- Each info -->
 
-                    <div class="each-info">
-                        <p class="name">Bedroom Furniture</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">Furnished</p>
-                    </div>
-                    <!-- Each info -->
+                  <div class="each-info">
+                    <b class="name">Bedroom Furniture:</b>
+                    <p class="condition">Furnished</p>
+                  </div>
+                  <!-- Each info -->
 
-                    <div class="each-info">
-                        <p class="name">Bathroom Facilities</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">Shared Bathroom Okay</p>
-                    </div>
-                    <!-- Each info -->
+                  <div class="each-info">
+                    <b class="name">Bathroom Facilities:</b>
+                    <p class="condition">Shared Bathroom Okay</p>
+                  </div>
+                  <!-- Each info -->
                 </div>
 
+                <hr>
 
                 <!-- Sell Info -->
                 <div class="sell-info">
-                    <h5>Flatmate Preferences</h5>
+                  <h4>Flatmate Preferences</h4>
 
-                    <div class="each-info">
-                        <p class="name">Gender & Sexuality</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">Males (student)</p>
-                    </div>
-                    <!-- Each info -->
+                  <div class="each-info">
+                    <b class="name">Gender & Sexuality:</b>
+                    <p class="condition">Males (student)</p>
+                  </div>
+                  <!-- Each info -->
 
-                    <div class="each-info">
-                        <p class="name">Age Group</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">21 to 30 yrs</p>
-                    </div>
-                    <!-- Each info -->
+                  <div class="each-info">
+                    <b class="name">Age Group:</b>
+                    <p class="condition">21 to 30 yrs</p>
+                  </div>
+                  <!-- Each info -->
 
-                    <div class="each-info">
-                        <p class="name">Smoking at Home</p>
-                        <p class="semi-colon">:</p>
-                        <p class="condition">Non-smokers - Outdoors okay</p>
-                    </div>
-                    <!-- Each info -->
+                  <div class="each-info">
+                    <b class="name">Smoking at Home:</b>
+                    <p class="condition">Non-smokers - Outdoors okay</p>
+                  </div>
+                  <!-- Each info -->
                 </div>
 
-
+                <hr>
                 <!-- Sell Info -->
                 <div class="sell-info">
-                    <h5>Location Preferences</h5>
+                  <h4>Location Preferences</h4>
 
-                    <div class="all-location">
-                        <div class="location">
-                            <p> <span></span> Mohammadpur</p>
-                        </div>
-                        <!-- Each Location -->
-
-                        <div class="location">
-                            <p> <span></span> Shakar</p>
-                        </div>
-                        <!-- Each Location -->
-
-                        <div class="location">
-                            <p> <span></span> Rayer Bazaar</p>
-                        </div>
-                        <!-- Each Location -->
-
-                        <div class="location">
-                            <p> <span></span> Dhanmondi</p>
-                        </div>
-                        <!-- Each Location -->
-
-                        <div class="location">
-                            <p> <span></span> Zigatola</p>
-                        </div>
-                        <!-- Each Location -->
-
-                        <div class="location">
-                            <p> <span></span> Tollabag</p>
-                        </div>
-                        <!-- Each Location -->
-
-                        <div class="location">
-                            <p> <span></span> Kolabagan</p>
-                        </div>
-                        <!-- Each Location -->
-
-                        <div class="location">
-                            <p> <span></span> shukrabad</p>
-                        </div>
-                        <!-- Each Location -->
-
-                        <div class="location">
-                            <p> <span></span> Tallioffice</p>
-                        </div>
-                        <!-- Each Location -->
-
-                        <div class="location">
-                            <p> <span></span> Geelong</p>
-                        </div>
-                        <!-- Each Location -->
-
-                        <div class="location">
-                            <p> <span></span> kaderabudhousing</p>
-                        </div>
-                        <!-- Each Location -->
-                        <div class="location">
-                            <p> <span></span> Poolpar</p>
-                        </div>
-                        <!-- Each Location -->
-
-                        <div class="location">
-                            <p> <span></span> Niltalamondir</p>
-                        </div>
-                        <!-- Each Location -->
+                  <div class="all-location">
+                    <div class="location">
+                      <p> <span></span> Mohammadpur</p>
                     </div>
+                    <!-- Each Location -->
+
+                    <div class="location">
+                      <p> <span></span> Shakar</p>
+                    </div>
+                    <!-- Each Location -->
+
+                    <div class="location">
+                      <p> <span></span> Rayer Bazaar</p>
+                    </div>
+                    <!-- Each Location -->
+
+                    <div class="location">
+                      <p> <span></span> Dhanmondi</p>
+                    </div>
+                    <!-- Each Location -->
+
+                    <div class="location">
+                      <p> <span></span> Zigatola</p>
+                    </div>
+                    <!-- Each Location -->
+
+                    <div class="location">
+                      <p> <span></span> Tollabag</p>
+                    </div>
+                    <!-- Each Location -->
+
+                    <div class="location">
+                      <p> <span></span> Kolabagan</p>
+                    </div>
+                    <!-- Each Location -->
+
+                    <div class="location">
+                      <p> <span></span> shukrabad</p>
+                    </div>
+                    <!-- Each Location -->
+
+                    <div class="location">
+                      <p> <span></span> Tallioffice</p>
+                    </div>
+                    <!-- Each Location -->
+
+                    <div class="location">
+                      <p> <span></span> Geelong</p>
+                    </div>
+                    <!-- Each Location -->
+
+                    <div class="location">
+                      <p> <span></span> kaderabudhousing</p>
+                    </div>
+                    <!-- Each Location -->
+                    <div class="location">
+                      <p> <span></span> Poolpar</p>
+                    </div>
+                    <!-- Each Location -->
+
+                    <div class="location">
+                      <p> <span></span> Niltalamondir</p>
+                    </div>
+                    <!-- Each Location -->
+                  </div>
                 </div>
+
+
+              </div>
             </div>
+          </div>
+
         </div>
+        {% endif %}
+      </div>
     </div>
-</main>
+  </div>
+</section>
+
+
 {% endblock %}
